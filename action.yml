@@ -1,6 +1,6 @@
 name: 'RetroMark Builder'
 description: 'Build retro-themed static websites from Markdown with math support and customizable layouts'
-author: 'AItzaz Imtiaz <aitzaz.imtiaz@example.com>'
+author: 'AItzaz Imtiaz <aitzaz.imtiaz@gmail.com>'
 branding:
   icon: 'book'
   color: 'blue-violet'
