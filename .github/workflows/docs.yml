@@ -1,59 +1,58 @@
-name: Build and Deploy Project Docs
+name: Build and Deploy Docs to GitHub Pages
 
 on:
+  # Run this workflow automatically on every push to the main branch
   push:
     branches:
       - main
       - master
 
+# Sets the necessary permissions for the workflow to deploy to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Ensures that only one deployment runs at a time
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
   build-and-deploy:
-    name: Build & Deploy Docs
+    name: Build and Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: 📥 Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: ⚙️ Set up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
+          # This version should match the engine requirement in your package.json
           node-version: 20.x
           cache: 'npm'
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: 🛠️ Build TypeScript
+      - name: Build the RetroMark tool
+        # This runs the 'build' script from your package.json
         run: npm run build
 
-      - name: 🧪 Debug: Show built files
-        run: |
-          echo "::group::Compiled files"
-          find dist -type f || echo "⚠️ Nothing found in dist"
-          echo "::endgroup::"
+      - name: Build the documentation site
+        # This runs your compiled tool on the 'docs' folder and outputs to a 'site' folder
+        run: node dist/index.js build --input docs --output site
 
-      - name: 🧱 Build project docs
-        # Adjust this if your CLI entry is not in dist/src/index.js
-        run: node dist/src/index.js build --input docs --output site
-
-      - name: ⚙️ Setup GitHub Pages
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: 📦 Upload site to Pages
+      - name: Upload artifact
+        # This uploads the generated 'site' folder as a GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './site'
 
-      - name: 🚀 Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
