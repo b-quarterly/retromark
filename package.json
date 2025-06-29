@@ -9,7 +9,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc && npm run copy-files",
+    "build": "tsc && npm run copy-files && node scripts/fix-imports",
     "copy-files": "cp -r src/static dist/static && cp -r src/core dist/src/core",
     "build:themes": "sass src/themes/:public/css/ --no-source-map",
     "dev": "tsc-watch --onSuccess \"node dist/src/index.js serve\"",
