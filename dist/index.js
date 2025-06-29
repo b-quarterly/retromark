@@ -9,9 +9,9 @@ const express_1 = __importDefault(require("express"));
 const livereload_1 = __importDefault(require("livereload"));
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
-const builder_1 = require("./core/builder.js");
-const config_loader_1 = require("./core/config-loader.js");
-const logger_1 = __importDefault(require("./utils/logger.js"));
+const builder_1 = require("./core/builder");
+const config_loader_1 = require("./core/config-loader");
+const logger_1 = __importDefault(require("./utils/logger"));
 const package_json_1 = require("../package.json");
 // --- Helper Functions ---
 const resolvePath = (inputPath) => {

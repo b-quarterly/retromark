@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
-const logger = require("../utils/logger.js");
+const logger = require('../utils/logger');
 // A default configuration to ensure the application has all necessary properties.
 const DEFAULT_CONFIG = {
     title: "RetroMark Site",

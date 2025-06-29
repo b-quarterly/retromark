@@ -5,7 +5,7 @@ const { marked } = require('marked');
 const hljs = require('highlight.js');
 const yaml = require('js-yaml');
 const katex = require('katex');
-const { logger } = require("../utils/logger.js");
+const { logger } = require('../utils/logger');
 /**
  * RetroMark Markdown Parser
  * =========================
