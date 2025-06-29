@@ -19,35 +19,41 @@ jobs:
   build-and-deploy:
     name: Build & Deploy Docs
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: ⚙️ Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm install
 
-      - name: Build the RetroMark tool
+      - name: 🛠️ Build TypeScript
         run: npm run build
 
-      - name: Build the project's own docs
-        # This is the corrected path to the compiled CLI entry point
+      - name: 🧪 Debug: Show built files
+        run: |
+          echo "::group::Compiled files"
+          find dist -type f || echo "⚠️ Nothing found in dist"
+          echo "::endgroup::"
+
+      - name: 🧱 Build the project's own docs
+        # Adjust the path if index.ts is not directly under src/
         run: node dist/src/index.js build --input docs --output site
 
-      - name: Setup Pages
+      - name: 📤 Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
-        # This path must match the output directory from the previous step
+      - name: 📦 Upload docs artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './site'
 
-      - name: Deploy to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
