@@ -1,34 +1,12 @@
-<% if (config.toc && config.toc.enabled && toc && toc.length > 0) { %>
-  <%
-    const renderTocNodes = (nodes, level) => {
-      let html = `<ul class="toc-level-${level} ${config.toc.indentGuides ? 'toc-indent' : ''}">`;
-      nodes.forEach((node, index) => {
-        html += `<li class="toc-item toc-level-${node.level}">`;
-        html += `<a href="#${node.id}" class="toc-link">`;
-        if (config.toc.numbering) {
-          html += `<span class="toc-number">${index + 1}.</span> `;
-        }
-        html += node.text;
-        html += `</a>`;
-        if (node.children && node.children.length > 0) {
-          html += renderTocNodes(node.children, level + 1);
-        }
-        html += `</li>`;
-      });
-      html += `</ul>`;
-      return html;
-    };
-  %>
-
-  <nav class="retro-toc toc-position-<%= config.toc.position %> toc-style-<%= config.toc.style %>">
-    <div class="toc-header">
-      <span class="toc-title"><%= config.toc.title || 'Contents' %></span>
-      <button class="toc-toggle" aria-label="Toggle table of contents">
-        <span class="toc-icon"></span>
-      </button>
-    </div>
-    <div class="toc-content">
-      <%- renderTocNodes(toc, 1) %>
-    </div>
+<% if (toc && toc.length > 0) { %>
+  <nav class="retro-toc">
+    <h3>Table of Contents</h3>
+    <ul>
+      <% toc.forEach(function(item) { %>
+        <li class="toc-level-<%= item.level %>">
+          <a href="#<%= item.id %>"><%= item.text %></a>
+        </li>
+      <% }); %>
+    </ul>
   </nav>
 <% } %>
