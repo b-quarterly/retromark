@@ -1,0 +1,319 @@
+@import '_variables';
+
+// ----------------------------------------
+// Academic Theme
+// Inspired by LaTeX, research papers, and classic textbooks.
+// ----------------------------------------
+
+// --- General Body & Layout ---
+
+body.theme-academic {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: $header-height + $spacing-lg;
+}
+
+.content-area {
+  flex-grow: 1;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $spacing-lg $container-padding;
+}
+
+// --- Typography ---
+
+.prose {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-headings;
+    color: $primary-color;
+    margin-top: $spacing-lg;
+    margin-bottom: $spacing-sm;
+    line-height: $line-height-headings;
+    font-weight: $font-weight-bold;
+  }
+
+  h1 { font-size: $h1-font-size; }
+  h2 { font-size: $h2-font-size; border-bottom: 1px solid $border-light-color; padding-bottom: $spacing-xs; }
+  h3 { font-size: $h3-font-size; }
+  h4 { font-size: $h4-font-size; font-style: italic; }
+
+  p {
+    margin-bottom: $spacing-base;
+  }
+
+  a {
+    color: $link-color;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: $transition-base;
+
+    &:hover {
+      color: $link-hover-color;
+      border-bottom-color: $link-hover-color;
+    }
+  }
+
+  strong {
+    font-weight: $font-weight-bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    background-color: $border-color;
+    margin: $spacing-xl 0;
+  }
+}
+
+// --- Header ---
+
+.site-header {
+  background-color: $header-bg;
+  border-bottom: $border-width solid $header-border-color;
+  box-shadow: $box-shadow-sm;
+  height: $header-height;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $header-padding;
+
+  .site-title {
+    font-family: $font-family-headings;
+    font-size: $font-size-lg;
+    color: $header-text-color;
+    font-weight: $font-weight-bold;
+  }
+
+  .main-nav a {
+    color: $header-text-color;
+    margin-left: $spacing-base;
+    font-size: $font-size-base;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+// --- Sidebar ---
+
+.sidebar {
+  width: $sidebar-width;
+  flex-shrink: 0;
+  background-color: $sidebar-bg;
+  border-right: 1px solid $sidebar-border-color;
+  padding: $sidebar-padding;
+  position: sticky;
+  top: $header-height + $spacing-lg;
+  height: calc(100vh - #{$header-height} - #{$spacing-lg});
+  overflow-y: auto;
+}
+
+// --- Table of Contents ---
+
+.retro-toc {
+  .toc-title {
+    font-family: $font-family-headings;
+    font-size: 1.2rem;
+    color: $secondary-color;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: $spacing-sm;
+    margin-bottom: $spacing-base;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  li {
+    margin-bottom: $spacing-sm;
+  }
+
+  a {
+    color: $text-light-color;
+    display: block;
+    padding: $spacing-xs 0;
+    font-size: 0.9rem;
+  }
+
+  .toc-level-1 > a {
+    font-weight: $font-weight-bold;
+    color: $text-color;
+  }
+
+  .toc-level-2 { padding-left: $spacing-base; }
+  .toc-level-3 { padding-left: $spacing-lg; }
+
+  .toc-indent li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: $border-light-color;
+  }
+}
+
+
+// --- Components ---
+
+.prose {
+  blockquote {
+    background-color: $subtle-color;
+    border-left: 4px solid $blockquote-border-color;
+    padding: $blockquote-padding;
+    margin: $spacing-lg 0;
+    font-style: $blockquote-font-style;
+  }
+
+  pre, code {
+    font-family: $font-family-code;
+    background-color: $code-bg;
+    border: 1px solid $border-light-color;
+    border-radius: $border-radius;
+  }
+
+  pre {
+    padding: $code-padding;
+    overflow-x: auto;
+  }
+
+  code {
+    padding: 0.2em 0.4em;
+    font-size: 90%;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: $spacing-lg 0;
+    border: 1px solid $table-border-color;
+
+    th, td {
+      border: 1px solid $table-border-color;
+      padding: $table-cell-padding;
+      text-align: left;
+    }
+
+    thead th {
+      background-color: $table-header-bg;
+      font-family: $font-family-headings;
+      font-weight: $font-weight-bold;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: $table-row-bg-alt;
+    }
+  }
+
+  .figure {
+    margin: $spacing-xl 0;
+    text-align: center;
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid $border-color;
+      box-shadow: $box-shadow;
+    }
+    .caption {
+      margin-top: $spacing-sm;
+      font-size: $font-size-sm;
+      color: $text-light-color;
+      font-style: italic;
+    }
+  }
+}
+
+// --- Special Academic Elements ---
+
+.theorem, .lemma, .proof {
+  border: 1px solid $border-color;
+  border-left-width: 4px;
+  padding: $spacing-base;
+  margin: $spacing-lg 0;
+  border-radius: $border-radius;
+}
+
+.theorem {
+  border-left-color: $primary-color;
+}
+
+.lemma {
+  border-left-color: $secondary-color;
+}
+
+.proof {
+  border-left-color: $info-color;
+}
+
+.theorem-title, .lemma-title, .proof-title {
+  font-family: $font-family-headings;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-sm;
+}
+
+.footnotes {
+  margin-top: $spacing-xxl;
+  border-top: 1px solid $border-color;
+  padding-top: $spacing-lg;
+  font-size: $font-size-sm;
+  color: $text-light-color;
+}
+
+// --- Print Mode ---
+
+@media print {
+  body.theme-academic {
+    background-color: #fff;
+    font-size: 12pt;
+    color: #000;
+  }
+
+  .site-header, .sidebar, .footer {
+    display: none;
+  }
+
+  .main-container, .content-area {
+    display: block;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .prose a {
+    color: #000;
+    text-decoration: underline;
+    &::after {
+      content: " (" attr(href) ")";
+    }
+  }
+
+  .prose blockquote, .prose pre {
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+
+  .prose h1, .prose h2, .prose h3 {
+    page-break-after: avoid;
+  }
+}
