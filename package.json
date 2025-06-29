@@ -9,13 +9,13 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc && cp -r src/templates dist/templates",
-    "build:themes": "sass src/themes/${THEME:-academic}.scss dist/style.css --no-source-map",
+    "build": "tsc && npm run build:themes",
+    "build:themes": "sass src/themes/academic.scss dist/style.css --no-source-map",
     "dev": "tsc-watch --onSuccess \"node dist/index.js serve\"",
     "test": "jest --coverage",
     "lint": "eslint . --ext .ts,.js",
     "format": "prettier --write .",
-    "package": "npm run build && npm run build:themes",
+    "package": "npm run build",
     "prepublishOnly": "npm run test && npm run package",
     "action:test": "act -j build",
     "release": "standard-version"
