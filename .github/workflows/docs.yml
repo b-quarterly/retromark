@@ -33,10 +33,11 @@ jobs:
         run: npm install
 
       - name: Build the RetroMark tool
+        # This now runs the complete build script from package.json
         run: npm run build
 
-      - name: Build the project's own docs
-        # This will now succeed because dist/index.js will exist at this path
+      - name: Build the documentation site
+        # This path is now correct because of the tsconfig.json change
         run: node dist/index.js build --input docs --output site
 
       - name: Setup Pages
