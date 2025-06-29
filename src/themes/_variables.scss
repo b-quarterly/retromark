@@ -1,0 +1,115 @@
+$primary-color: #8b0000;
+$secondary-color: #556b2f;
+$accent-color: #0066cc;
+$highlight-color: #ffc107;
+$subtle-color: #f5f2e9;
+
+$background-color: #f9f3e9;
+$text-color: #333333;
+$text-light-color: #666666;
+$text-inverse-color: #ffffff;
+
+$link-color: #0066cc;
+$link-hover-color: #8b0000;
+$link-visited-color: #551a8b;
+
+$success-color: #28a745;
+$warning-color: #ffc107;
+$error-color: #dc3545;
+$info-color: #17a2b8;
+
+$border-color: #dcd6c2;
+$border-light-color: #e8e3d3;
+$border-dark-color: #a9a290;
+$border-radius: 4px;
+$border-width: 1px;
+
+$font-family-base: "Garamond", "Times New Roman", serif;
+$font-family-headings: "Playfair Display", "Georgia", serif;
+$font-family-code: "Courier Prime", "Courier New", monospace;
+$font-family-sans: "Helvetica Neue", "Arial", sans-serif;
+
+$font-size-base: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-sm: 0.875rem;
+$font-size-xl: 1.5rem;
+$font-size-xs: 0.75rem;
+
+$line-height-base: 1.6;
+$line-height-headings: 1.2;
+
+$h1-font-size: 2.5rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.75rem;
+$h4-font-size: 1.5rem;
+$h5-font-size: 1.25rem;
+$h6-font-size: 1rem;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+$spacing-base: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-sm: 0.5rem;
+$spacing-xl: 2rem;
+$spacing-xs: 0.25rem;
+$spacing-xxl: 3rem;
+
+$container-max-width: 800px;
+$container-padding: 1.5rem;
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+$header-height: 60px;
+$header-bg: #ffffff;
+$header-text-color: #333333;
+$header-border-color: #dcd6c2;
+$header-padding: 0 1.5rem;
+
+$footer-height: 80px;
+$footer-bg: #f5f2e9;
+$footer-text-color: #666666;
+$footer-border-color: #dcd6c2;
+$footer-padding: 1.5rem;
+
+$sidebar-width: 280px;
+$sidebar-bg: #f5f2e9;
+$sidebar-text-color: #333333;
+$sidebar-border-color: #dcd6c2;
+$sidebar-padding: 1.5rem;
+
+$code-bg: #f8f5e9;
+$code-text-color: #333333;
+$code-border-color: #e8e3d3;
+$code-padding: 1rem;
+$pre-bg: #f8f5e9;
+
+$blockquote-bg: transparent;
+$blockquote-border-color: #8b0000;
+$blockquote-padding: 1rem 1.5rem;
+$blockquote-font-style: italic;
+
+$table-border-color: #dcd6c2;
+$table-header-bg: #e8e3d3;
+$table-row-bg: #ffffff;
+$table-row-bg-alt: #f9f3e9;
+$table-cell-padding: 0.75rem;
+
+$button-bg: #0066cc;
+$button-text-color: #ffffff;
+$button-hover-bg: #0056b3;
+$button-padding: 0.5rem 1rem;
+$button-border-radius: 4px;
+
+$box-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+$box-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
+$text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+
+$transition-base: all 0.2s ease-in-out;
+$transition-fast: all 0.1s ease-in-out;
+$transition-slow: all 0.4s ease-in-out;
