@@ -1,0 +1,39 @@
+name: 'RetroMark Builder'
+description: 'Build retro-themed static websites from Markdown with math support and customizable layouts'
+author: 'AItzaz Imtiaz <aitzaz.imtiaz@example.com>'
+branding:
+  icon: 'book'
+  color: 'blue-violet'
+inputs:
+  source-dir:
+    description: 'Directory containing Markdown content'
+    required: true
+    default: 'content'
+  output-dir:
+    description: 'Build output directory'
+    required: false
+    default: 'dist'
+  config-file:
+    description: 'Path to retro.yml configuration'
+    required: false
+    default: 'retro.yml'
+  theme:
+    description: 'Override theme (academic/novel/guidebook/terminal/vaporwave)'
+    required: false
+  toc-position:
+    description: 'Table of Contents position (none/top/bottom/sticky-left/sticky-right)'
+    required: false
+  math-engine:
+    description: 'Math rendering engine (katex/mathjax)'
+    required: false
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+  pre: 'npm install --production'
+  post:
+    using: 'docker'
+    image: 'Dockerfile'
+outputs:
+  generated-site:
+    description: 'Path to generated static site'
+    value: '${{ inputs.output-dir }}'
