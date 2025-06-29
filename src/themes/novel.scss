@@ -1,0 +1,186 @@
+@import '_variables';
+
+// ----------------------------------------
+// Novel Theme
+// Inspired by classic literature, with a focus on immersive reading.
+// ----------------------------------------
+
+// --- Color & Font Overrides ---
+$primary-color: #5d4037;      // Deep, classic brown for text
+$secondary-color: #8d6e63;    // Lighter brown for accents
+$background-color: #fffaf0;   // Antique paper/vellum
+$text-color: #3e2723;         // Dark, warm text color
+$link-color: $primary-color;
+$link-hover-color: #bf360c;   // A burnt orange for hover
+$border-color: #d7ccc8;       // Soft, light sepia border
+
+$font-family-base: 'Crimson Text', 'Georgia', serif;
+$font-family-headings: 'IM Fell English', 'Times New Roman', serif;
+$font-family-code: 'Courier Prime', monospace;
+$font-size-base: 1.125rem; // Slightly larger for readability
+$line-height-base: 1.8;
+
+
+// --- General Body & Book Layout ---
+body.theme-novel {
+  background-color: darken($background-color, 5%);
+  color: $text-color;
+  font-family: $font-family-base;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: $spacing-lg 0;
+}
+
+.book-container {
+  width: 100%;
+  max-width: $container-max-width;
+  background-color: $background-color;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 5px 15px rgba(0,0,0,0.15);
+  border: 1px solid darken($border-color, 10%);
+  padding: $spacing-xxl;
+  position: relative;
+}
+
+.page-content {
+  position: relative;
+}
+
+// --- Typography & Prose ---
+.prose {
+  text-align: justify;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  h1, h2, h3 {
+    font-family: $font-family-headings;
+    text-align: center;
+    font-weight: 400;
+    color: $text-color;
+  }
+
+  p {
+    margin-bottom: $spacing-sm;
+    text-indent: 2em; // First line indentation
+    &:first-of-type {
+      text-indent: 0;
+      &::first-letter {
+        font-family: $font-family-headings;
+        float: left;
+        font-size: 4.5rem;
+        line-height: 0.8;
+        padding-right: $spacing-sm;
+        color: $primary-color;
+      }
+    }
+  }
+
+  hr { // For scene breaks
+    border: 0;
+    text-align: center;
+    margin: $spacing-xl 0;
+    &::after {
+      content: '***';
+      font-family: $font-family-headings;
+      font-size: 1.5rem;
+      letter-spacing: 0.5em;
+      color: $secondary-color;
+    }
+  }
+}
+
+// --- Chapter Header & Special Sections ---
+.chapter-header {
+  margin-bottom: $spacing-xxl;
+  h1 {
+    font-size: $h2-font-size;
+    margin-bottom: $spacing-xs;
+  }
+  .chapter-number {
+    font-family: $font-family-headings;
+    font-size: $font-size-base;
+    color: $secondary-color;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+}
+
+.epigraph {
+  margin: 0 auto $spacing-xxl auto;
+  max-width: 75%;
+  text-align: center;
+  blockquote {
+    border: none;
+    padding: 0;
+    p {
+      text-indent: 0;
+      font-style: italic;
+    }
+    footer {
+      font-style: normal;
+      color: $secondary-color;
+      margin-top: $spacing-base;
+    }
+  }
+}
+
+.colophon {
+  margin-top: $spacing-xxl;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $border-color;
+  text-align: center;
+  font-size: $font-size-sm;
+  color: $secondary-color;
+  font-style: italic;
+  p { text-indent: 0; }
+}
+
+// --- Pagination ---
+.pagination-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: $spacing-xl;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $border-color;
+  font-family: $font-family-headings;
+  font-size: $font-size-base;
+
+  a {
+    color: $secondary-color;
+    text-decoration: none;
+    transition: $transition-base;
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
+}
+
+
+// --- Print Styles ---
+@media print {
+  body.theme-novel {
+    background-color: #fff;
+    padding: 0;
+  }
+
+  .book-container {
+    box-shadow: none;
+    border: none;
+    max-width: 100%;
+    padding: 1in; // Standard book margin
+  }
+
+  .pagination-nav {
+    display: none;
+  }
+
+  .prose p {
+    text-indent: 1.5em;
+  }
+
+  .prose h1, .prose h2 {
+    page-break-before: always;
+  }
+}
