@@ -1,0 +1,276 @@
+body.theme-academic {
+  background-color: #f9f3e9;
+  color: #333333;
+  font-family: "Garamond", "Times New Roman", serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: calc(60px + 1.5rem);
+}
+
+.content-area {
+  flex-grow: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  font-family: "Playfair Display", "Georgia", serif;
+  color: #8b0000;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+.prose h1 {
+  font-size: 2.5rem;
+}
+.prose h2 {
+  font-size: 2rem;
+  border-bottom: 1px solid #e8e3d3;
+  padding-bottom: 0.25rem;
+}
+.prose h3 {
+  font-size: 1.75rem;
+}
+.prose h4 {
+  font-size: 1.5rem;
+  font-style: italic;
+}
+.prose p {
+  margin-bottom: 1rem;
+}
+.prose a {
+  color: #0066cc;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+.prose a:hover {
+  color: #8b0000;
+  border-bottom-color: #8b0000;
+}
+.prose strong {
+  font-weight: 700;
+}
+.prose em {
+  font-style: italic;
+}
+.prose hr {
+  border: 0;
+  height: 1px;
+  background-color: #dcd6c2;
+  margin: 2rem 0;
+}
+
+.site-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dcd6c2;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+.site-header .site-title {
+  font-family: "Playfair Display", "Georgia", serif;
+  font-size: 1.25rem;
+  color: #333333;
+  font-weight: 700;
+}
+.site-header .main-nav a {
+  color: #333333;
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+.site-header .main-nav a:hover {
+  color: #8b0000;
+}
+
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background-color: #f5f2e9;
+  border-right: 1px solid #dcd6c2;
+  padding: 1.5rem;
+  position: sticky;
+  top: calc(60px + 1.5rem);
+  height: calc(100vh - 60px - 1.5rem);
+  overflow-y: auto;
+}
+
+.retro-toc .toc-title {
+  font-family: "Playfair Display", "Georgia", serif;
+  font-size: 1.2rem;
+  color: #556b2f;
+  border-bottom: 1px solid #dcd6c2;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.retro-toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+.retro-toc li {
+  margin-bottom: 0.5rem;
+}
+.retro-toc a {
+  color: #666666;
+  display: block;
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+}
+.retro-toc .toc-level-1 > a {
+  font-weight: 700;
+  color: #333333;
+}
+.retro-toc .toc-level-2 {
+  padding-left: 1rem;
+}
+.retro-toc .toc-level-3 {
+  padding-left: 1.5rem;
+}
+.retro-toc .toc-indent li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #e8e3d3;
+}
+
+.prose blockquote {
+  background-color: #f5f2e9;
+  border-left: 4px solid #8b0000;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+.prose pre, .prose code {
+  font-family: "Courier Prime", "Courier New", monospace;
+  background-color: #f8f5e9;
+  border: 1px solid #e8e3d3;
+  border-radius: 4px;
+}
+.prose pre {
+  padding: 1rem;
+  overflow-x: auto;
+}
+.prose code {
+  padding: 0.2em 0.4em;
+  font-size: 90%;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  border: 1px solid #dcd6c2;
+}
+.prose table th, .prose table td {
+  border: 1px solid #dcd6c2;
+  padding: 0.75rem;
+  text-align: left;
+}
+.prose table thead th {
+  background-color: #e8e3d3;
+  font-family: "Playfair Display", "Georgia", serif;
+  font-weight: 700;
+}
+.prose table tbody tr:nth-child(even) {
+  background-color: #f9f3e9;
+}
+.prose .figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+.prose .figure img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #dcd6c2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+.prose .figure .caption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #666666;
+  font-style: italic;
+}
+
+.theorem, .lemma, .proof {
+  border: 1px solid #dcd6c2;
+  border-left-width: 4px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+}
+
+.theorem {
+  border-left-color: #8b0000;
+}
+
+.lemma {
+  border-left-color: #556b2f;
+}
+
+.proof {
+  border-left-color: #17a2b8;
+}
+
+.theorem-title, .lemma-title, .proof-title {
+  font-family: "Playfair Display", "Georgia", serif;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.footnotes {
+  margin-top: 3rem;
+  border-top: 1px solid #dcd6c2;
+  padding-top: 1.5rem;
+  font-size: 0.875rem;
+  color: #666666;
+}
+
+@media print {
+  body.theme-academic {
+    background-color: #fff;
+    font-size: 12pt;
+    color: #000;
+  }
+  .site-header, .sidebar, .footer {
+    display: none;
+  }
+  .main-container, .content-area {
+    display: block;
+    padding: 0;
+    max-width: 100%;
+  }
+  .prose a {
+    color: #000;
+    text-decoration: underline;
+  }
+  .prose a::after {
+    content: " (" attr(href) ")";
+  }
+  .prose blockquote, .prose pre {
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+  .prose h1, .prose h2, .prose h3 {
+    page-break-after: avoid;
+  }
+}
