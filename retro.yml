@@ -6,7 +6,7 @@
 # -------------
 title: "My Retro Site"
 description: "A retro-styled knowledge base"
-baseUrl: "/"  # Base path for deployment
+baseUrl: "/retromark"  # Base path for deployment
 author: "Aitzaz Imtiaz"
 language: "en-US"
 
