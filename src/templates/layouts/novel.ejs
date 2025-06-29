@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="<%= config.language || 'en-US' %>">
+<head>
+    <%- include('../components/head') %>
+    <title><%= page.frontMatter.title || config.title %></title>
+</head>
+<body class="theme-novel layout-<%= config.layout.type %>">
+
+    <div class="book-container">
+        <main class="page-content">
+            <article class="prose">
+                <% if (page.frontMatter.epigraph) { %>
+                    <div class="epigraph">
+                        <blockquote>
+                            <p><%= page.frontMatter.epigraph.text %></p>
+                            <% if (page.frontMatter.epigraph.attribution) { %>
+                                <footer>— <%= page.frontMatter.epigraph.attribution %></footer>
+                            <% } %>
+                        </blockquote>
+                    </div>
+                <% } %>
+
+                <header class="chapter-header">
+                    <h1><%= page.frontMatter.title %></h1>
+                    <% if (page.frontMatter.chapter_number) { %>
+                        <div class="chapter-number">Chapter <%= page.frontMatter.chapter_number %></div>
+                    <% } %>
+                </header>
+
+                <%- content %>
+
+                 <% if (page.frontMatter.colophon) { %>
+                    <div class="colophon">
+                        <p><%= page.frontMatter.colophon %></p>
+                    </div>
+                <% } %>
+            </article>
+
+            <nav class="pagination-nav">
+                <div class="nav-previous">
+                    <% if (page.previous) { %>
+                        <a href="<%= page.previous.path %>">← <%= config.navigation && config.navigation.labels && config.navigation.labels.previous ? config.navigation.labels.previous : 'Previous' %></a>
+                    <% } %>
+                </div>
+                <div class="nav-next">
+                    <% if (page.next) { %>
+                        <a href="<%= page.next.path %>"><%= config.navigation && config.navigation.labels && config.navigation.labels.next ? config.navigation.labels.next : 'Next' %> →</a>
+                    <% } %>
+                </div>
+            </nav>
+        </main>
+    </div>
+
+    <%- include('../components/footer', { config: config, page: page }) %>
+
+    <%- include('../components/math-support', { config: config }) %>
+
+</body>
+</html>
