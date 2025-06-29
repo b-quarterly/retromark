@@ -1,0 +1,150 @@
+# Zine Theme Preset
+# ================
+# Punk-inspired DIY aesthetic with cut-and-paste style, distressed textures,
+# and anarchic layouts. Perfect for counterculture content, personal manifestos,
+# and experimental digital publications.
+
+meta:
+  name: "Zine"
+  description: "DIY punk aesthetic with cut-and-paste collage style"
+  author: "AItzaz Imtiaz"
+  version: "1.0"
+  warning: "This theme intentionally breaks design rules!"
+
+theme: "zine"
+
+layout:
+  type: "chaotic-grid"    # Irregular overlapping grid
+  header:
+    position: "sticky"
+    style: "collage"       # Elements appear glued on
+    show_title: true
+    show_nav: false
+  footer:
+    enabled: true
+    content: |
+      ⚠️ COPY THIS ZINE ⚠️ • PHOTOCOPY AND DISTRIBUTE • {date} • ISSUE #{random(1,100)}
+
+typography:
+  font:
+    body: "'Courier Prime', 'American Typewriter', monospace"
+    headings: "'Permanent Marker', 'Impact', cursive"
+    code: "'Special Elite', monospace"
+  sizes:
+    base: "16px"
+    h1: "3.5rem"           # Irregular sizes
+    h2: "2.1rem"
+    h3: "1.8rem"
+  line_height: "1.4"
+  max_width: "none"        # No constraints!
+  text_align: "justify"    # Ragged edges
+
+colors:
+  primary: "#ff0000"       # Punk red
+  secondary: "#0000ff"     # Anarchist blue
+  background: "#ffffcc"    # Yellowed paper
+  text: "#000000"          # Xerox black
+  links: "#ff00ff"         # Hot pink
+  links_hover: "#ff0000"   # Blood red
+  header_bg: "transparent"
+  border: "#000000"
+  code_bg: "#ffffff"
+  highlight: "#ffff00"     # Highlighter yellow
+
+toc:
+  enabled: true
+  position: "scattered"    # Experimental placement
+  style: "hand-drawn"
+  depth: 2
+  numbering: false
+  title: "SCRATCH THAT ↓"
+
+navigation:
+  style: "random"          # Non-linear exploration
+  position: "everywhere"
+  labels:
+    previous: "⤺ BACK"
+    next: "NEXT ⤻"
+
+math:
+  engine: "handwritten"    # Special style for equations
+  delimiters: ['@@', '@@'] # Unconventional delimiters
+
+features:
+  syntax_highlighting: false
+  header_anchors: false
+  print_mode: true
+  cutout_effect: true      # Rough cut edges
+  tape_effects: true       # Virtual "tape" on elements
+  handwriting_mode: true   # Toggle all text to handwriting
+  glitch_effect: true      # Optional distortion
+
+elements:
+  blockquote:
+    style: "cutout"
+    rotation: "-3deg"
+    background: "#ffffff"
+    border: "2px dashed #000"
+  hr:
+    style: "scribble"      # Hand-drawn separator
+  image:
+    border: "polaroid"     # Torn edges + tape corners
+    rotation: "random"     # Random tilt between -5° and 5°
+  list:
+    style: "handwritten"   # Checkboxes look like ✓ or ✗
+  table:
+    style: "collage"       # Cells appear pasted separately
+
+custom:
+  css: "zine-overrides.css"
+  js: "zine-extras.js"
+  fonts:
+    - name: "Permanent Marker"
+      url: "https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+    - name: "Special Elite"
+      url: "https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
+    - name: "Rock Salt"
+      url: "https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap"
+  textures:
+    - name: "paper"
+      url: "textures/lined-paper.jpg"
+    - name: "coffee-stain"
+      url: "textures/coffee-stain.png"
+  before_content: |
+    <div class="ransom-note">
+      <p>THIS IS AN UNAUTHORIZED PUBLICATION</p>
+      <p>READ AT YOUR OWN RISK</p>
+    </div>
+  after_content: |
+    <div class="distro-list">
+      <h3>⚡ DISTRO POINTS ⚡</h3>
+      <ul>
+        <li>@crustypunkbooks (Insta)</li>
+        <li>Copymachine #3 - 4th & Main</li>
+        <li>Anarchist Bookfair - Every May</li>
+      </ul>
+    </div>
+
+processing:
+  smart_quotes: false      # Keep raw text
+  preserve_whitespace: true
+  glitch_chance: 2         # 2% chance of character substitution
+
+# Zine-specific components
+zine:
+  issue_number: "01"
+  print_run: "100"         # Copies "printed"
+  cut_line: true           # Show cut marks
+  staple_position: "top-left"
+  margin_notes: true       # Handwritten-style annotations
+  paste_ups: true          # Image/text collage elements
+  mimeo_effect: true       # Purple-ink duplication look
+  zine_edges: "rough"      # Options: rough/burnt/torn
+
+# Punk aesthetic settings
+punk:
+  ransom_note: true        # Mixed-font text blocks
+  photocopy_effect: 3      # 1-5 (5 = heaviest distortion)
+  punk_icons: true         # ⚡ ✊ Ⓐ ☠ symbols
+  sticker_effect: true     # Elements look pasted on
+  censorship_marks: false  # Optional black bars
