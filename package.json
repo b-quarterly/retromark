@@ -64,7 +64,7 @@
     "js-yaml": "^4.1.0",
     "katex": "^0.16.9",
     "marked": "^14.1.0",
-    "marked-anchor-extractor": "^1.0.1",
+    "marked-gfm-heading-id": "^3.1.0",
     "sass": "^1.70.0"
   },
   "devDependencies": {
