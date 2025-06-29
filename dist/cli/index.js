@@ -5,9 +5,9 @@ const { program } = require('commander');
 const chokidar = require('chokidar');
 const express = require('express');
 const liveReload = require('livereload');
-const { buildSite } = require('../core/builder');
-const { loadConfig } = require('../core/config-loader');
-const logger = require('../utils/logger');
+const { buildSite } = require("../core/builder.js");
+const { loadConfig } = require("../core/config-loader.js");
+const logger = require("../utils/logger.js");
 const packageJson = require('../../package.json');
 /**
  * Main CLI Implementation

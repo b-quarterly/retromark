@@ -2,8 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
-const { logger } = require('../utils/logger');
-const { parseMarkdown } = require('./parser');
+const { logger } = require("../utils/logger.js");
+const { parseMarkdown } = require("./parser.js");
 /**
  * RetroMark Configuration Manager
  * ===============================

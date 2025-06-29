@@ -2,8 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 const sass = require('sass');
-const { logger } = require('../utils/logger');
-const { parseMarkdownFile } = require('./parser');
+const { logger } = require("../utils/logger.js");
+const { parseMarkdownFile } = require("./parser.js");
 /**
  * RetroMark Theme Loader
  * =====================

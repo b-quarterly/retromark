@@ -1,0 +1,329 @@
+/**
+ * RetroMark Theme Customization File
+ * ==================================
+ * Override default theme styles without modifying core files.
+ * Add your custom CSS rules below to create unique retro designs.
+ * 
+ * Usage:
+ * 1. Place this file in your project's `public/` directory
+ * 2. Reference it in retro.yml: 
+ *    custom:
+ *      css: "override.css"
+ *
+ * Available CSS Variables:
+ * --primary-color       Main accent color
+ * --secondary-color     Secondary accent color
+ * --background-color    Page background
+ * --text-color          Body text color
+ * --link-color          Hyperlink color
+ * --header-bg           Header background
+ * --sidebar-bg          Sidebar background
+ * --code-bg             Code block background
+ * --border-color        Borders and rules
+ * --font-body           Body font stack
+ * --font-headings       Heading font stack
+ * --font-code           Code/monospace font
+ */
+
+/* =====================
+   GLOBAL OVERRIDES
+   ===================== */
+:root {
+  /* Color Customizations */
+  --primary-color: #8b0000;       /* Dark red */
+  --secondary-color: #556b2f;     /* Olive green */
+  --background-color: #f9f3e9;    /* Parchment paper */
+  --text-color: #333333;          /* Dark gray */
+  --link-color: #0066cc;          /* Classic blue */
+  --link-hover-color: #8b0000;    /* Dark red */
+  --header-bg: #ffffff;           /* White */
+  --sidebar-bg: #f5f2e9;          /* Light parchment */
+  --code-bg: #f8f5e9;             /* Light parchment */
+  --border-color: #dcd6c2;        /* Light sepia */
+  
+  /* Typography */
+  --font-body: 'Garamond', 'Times New Roman', serif;
+  --font-headings: 'Playfair Display', 'Georgia', serif;
+  --font-code: 'Courier Prime', monospace;
+  
+  /* Special Effects */
+  --paper-texture: url('textures/light-paper.png');
+  --ink-bleed: 0.5px; /* Simulate vintage printing imperfection */
+}
+
+/* Apply paper texture to background */
+body {
+  background-image: var(--paper-texture);
+  background-size: 100% auto;
+  background-attachment: fixed;
+}
+
+/* =====================
+   TYPOGRAPHY ENHANCEMENTS
+   ===================== */
+/* Create ink bleed effect on text */
+h1, h2, h3, h4, h5, h6, p, li {
+  text-shadow: 
+    0 0 var(--ink-bleed) rgba(0, 0, 0, 0.3),
+    0 0 calc(var(--ink-bleed) * 2) rgba(0, 0, 0, 0.2);
+}
+
+/* First paragraph in sections with decorative drop cap */
+article > p:first-of-type::first-letter {
+  font-family: var(--font-headings);
+  font-size: 4.5rem;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+/* =====================
+   HEADER CUSTOMIZATION
+   ===================== */
+/* Vintage header with subtle border */
+.site-header {
+  border-bottom: 3px double var(--border-color);
+  padding-bottom: 0.5rem;
+  background-color: var(--header-bg);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Decorative underline for navigation */
+.main-nav a {
+  position: relative;
+  padding-bottom: 0.3rem;
+}
+
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+/* =====================
+   SIDEBAR ENHANCEMENTS
+   ===================== */
+.sidebar {
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  box-shadow: inset -8px 0 10px -10px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+}
+
+/* Vintage sidebar with curled corner effect */
+.sidebar::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(225deg, var(--sidebar-bg) 50%, transparent 50%);
+  box-shadow: -2px -2px 3px rgba(0,0,0,0.1);
+}
+
+/* =====================
+   TABLE OF CONTENTS
+   ===================== */
+.toc {
+  border-left: 3px solid var(--primary-color);
+  padding-left: 1rem;
+}
+
+.toc ul {
+  list-style-type: none;
+  padding-left: 1rem;
+}
+
+.toc li {
+  position: relative;
+  margin-bottom: 0.3rem;
+}
+
+.toc li::before {
+  content: '▸';
+  position: absolute;
+  left: -1rem;
+  color: var(--primary-color);
+  font-size: 0.8rem;
+}
+
+/* =====================
+   CODE BLOCKS & MATH
+   ===================== */
+pre, code {
+  font-family: var(--font-code);
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--primary-color);
+  box-shadow: inset 2px 0 0 rgba(0,0,0,0.05);
+}
+
+/* Vintage typewriter effect for code blocks */
+pre {
+  position: relative;
+  overflow: hidden;
+}
+
+pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 1.2rem;
+  background: linear-gradient(to right, transparent 90%, var(--code-bg));
+  pointer-events: none;
+}
+
+/* Math equation styling */
+.katex-display {
+  padding: 1rem;
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--border-color);
+  overflow: auto;
+}
+
+/* =====================
+   SPECIAL RETRO EFFECTS
+   ===================== */
+/* Coffee stain effect */
+.coffee-stain {
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+  width: 150px;
+  height: 150px;
+  opacity: 0.03;
+  background-image: url('textures/coffee-stain.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Vintage paper fold effect */
+.paper-fold {
+  position: relative;
+}
+
+.paper-fold::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(225deg, #fff 50%, transparent 50%);
+  box-shadow: -2px -2px 3px rgba(0,0,0,0.1);
+  opacity: 0.5;
+}
+
+/* Typewriter text effect */
+.typewriter {
+  border-right: 3px solid var(--text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--text-color) }
+}
+
+/* =====================
+   PRINT OPTIMIZATIONS
+   ===================== */
+@media print {
+  /* Remove interactive elements */
+  .site-header, .sidebar, .toc {
+    display: none;
+  }
+  
+  /* Improve readability */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+  
+  /* Add page breaks between chapters */
+  .chapter {
+    page-break-before: always;
+  }
+  
+  /* Show URLs after links */
+  a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+}
+
+/* =====================
+   THEME-SPECIFIC OVERRIDES
+   ===================== */
+/* Academic Theme Tweaks */
+.theme-academic blockquote {
+  border-left: 3px solid var(--primary-color);
+  padding-left: 1.5rem;
+  font-style: italic;
+}
+
+/* Novel Theme Enhancements */
+.theme-novel .chapter-title {
+  text-align: center;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.theme-novel .chapter-title::before,
+.theme-novel .chapter-title::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 1px;
+  background: var(--border-color);
+  margin: 1rem auto;
+}
+
+/* Zine Theme Punk Effects */
+.theme-zine {
+  --background-color: #ffffcc;
+  --primary-color: #ff0000;
+  --font-headings: 'Permanent Marker', cursive;
+}
+
+.theme-zine h1 {
+  transform: rotate(-2deg);
+  text-shadow: 3px 3px 0px rgba(255,0,0,0.3);
+}
+
+.theme-zine blockquote {
+  background: white;
+  border: 2px dashed black;
+  padding: 1rem;
+  transform: rotate(1deg);
+  box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+}
