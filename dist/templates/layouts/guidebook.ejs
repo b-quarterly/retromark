@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="<%= config.language || 'en-US' %>">
+<head>
+    <%- include('../components/header') %>
+    <title><%= page.frontMatter.title || config.title %></title>
+</head>
+<body class="theme-guidebook layout-<%= config.layout.type %>">
+
+    <%- include('../components/header', { config: config, page: page }) %>
+
+    <div class="guidebook-container">
+
+        <% if (config.layout.type.includes('sidebar')) { %>
+            <aside class="guidebook-sidebar">
+                <div class="guidebook-navigation">
+                    <h3>Guide Contents</h3>
+                    <%- include('../components/toc', { config: config, toc: toc }) %>
+                </div>
+            </aside>
+        <% } %>
+
+        <main class="guidebook-content">
+            <article class="prose">
+                <header class="guidebook-header">
+                    <h1><%= page.frontMatter.title %></h1>
+                    <% if (page.frontMatter.subtitle) { %>
+                        <p class="subtitle"><%= page.frontMatter.subtitle %></p>
+                    <% } %>
+                </header>
+
+                <%- content %>
+
+            </article>
+
+            <nav class="chapter-navigation">
+                <div class="nav-previous">
+                    <% if (page.previous) { %>
+                        <a href="<%= page.previous.path %>">← <%= page.previous.title %></a>
+                    <% } %>
+                </div>
+                <div class="nav-next">
+                    <% if (page.next) { %>
+                        <a href="<%= page.next.path %>"><%= page.next.title %> →</a>
+                    <% } %>
+                </div>
+            </nav>
+        </main>
+    </div>
+
+    <%- include('../components/footer', { config: config }) %>
+
+    <%- include('../components/math-support', { config: config }) %>
+
+</body>
+</html>

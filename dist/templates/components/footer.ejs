@@ -1,0 +1,5 @@
+<% if (config && config.layout && config.layout.footer && config.layout.footer.enabled) { %>
+  <footer class="site-footer">
+      <p><%- config.layout.footer.content.replace('{year}', new Date().getFullYear()) %></p>
+  </footer>
+<% } %>
