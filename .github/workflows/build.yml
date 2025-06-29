@@ -22,20 +22,20 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'npm'
 
-      - name: Install dependencies & Generate Lockfile
+      - name: Install dependencies
         run: npm install
 
       - name: Build project
         run: npm run build
-        env:
-          CI: true
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: build artifacts and update lockfile"
-          file_pattern: "dist/** package-lock.json tsconfig.json"
+          # This will now succeed because the 'dist' directory will be created
+          file_pattern: "dist package-lock.json"
           commit_user_name: "GitHub Actions Bot"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "GitHub Actions Bot <github-actions[bot]@users.noreply.github.com>"
