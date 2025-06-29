@@ -1,4 +1,4 @@
-@import '_variables';
+@use 'variables' as *;
 
 // ----------------------------------------
 // Academic Theme
@@ -21,7 +21,8 @@ body.theme-academic {
   display: flex;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: $header-height + $spacing-lg;
+  // Use calc() to correctly add different units
+  padding-top: calc(#{$header-height} + #{$spacing-lg});
 }
 
 .content-area {
@@ -123,7 +124,7 @@ body.theme-academic {
   border-right: 1px solid $sidebar-border-color;
   padding: $sidebar-padding;
   position: sticky;
-  top: $header-height + $spacing-lg;
+  top: calc(#{$header-height} + #{$spacing-lg});
   height: calc(100vh - #{$header-height} - #{$spacing-lg});
   overflow-y: auto;
 }
