@@ -1,0 +1,26 @@
+<% if (config.math && config.math.engine === 'katex') { %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0KOVEMcAExBEHF6+igibNdUxGZycSxkEQCJACvh7IwgktqSlt9GQl" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "<%= config.math.delimiters.display[0] %>", right: "<%= config.math.delimiters.display[1] %>", display: true},
+          {left: "<%= config.math.delimiters.inline[0] %>", right: "<%= config.math.delimiters.inline[1] %>", display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+<% } else if (config.math && config.math.engine === 'mathjax') { %>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['<%= config.math.delimiters.inline[0] %>', '<%= config.math.delimiters.inline[1] %>']],
+        displayMath: [['<%= config.math.delimiters.display[0] %>', '<%= config.math.delimiters.display[1] %>']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<% } %>
