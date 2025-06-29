@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="<%= config.language || 'en-US' %>">
+<head>
+    <%- include('../components/head') %>
+    <title><%= page.frontMatter.title || config.title %></title>
+</head>
+<body class="theme-academic layout-<%= config.layout.type %>">
+
+    <%- include('../components/header', { config: config, page: page }) %>
+
+    <div class="main-container">
+        <% if (config.layout.type === 'sidebar-left' || config.layout.type === 'sidebar-right') { %>
+            <aside class="sidebar">
+                <%- include('../components/toc', { config: config, toc: toc }) %>
+            </aside>
+        <% } %>
+
+        <main class="content-area">
+            <article class="prose">
+                <% if (page.frontMatter.titlepage) { %>
+                    <header class="title-page">
+                        <h1><%= page.frontMatter.title %></h1>
+                        <% if (page.frontMatter.author || config.author) { %>
+                            <p class="author"><%= page.frontMatter.author || config.author %></p>
+                        <% } %>
+                        <% if (page.frontMatter.date) { %>
+                            <p class="date"><%= new Date(page.frontMatter.date).toLocaleDateString() %></p>
+                        <% } %>
+                    </header>
+                <% } %>
+
+                <% if (page.frontMatter.abstract) { %>
+                    <section class="abstract">
+                        <h2>Abstract</h2>
+                        <p><%= page.frontMatter.abstract %></p>
+                    </section>
+                <% } %>
+
+                <%- content %>
+            </article>
+        </main>
+    </div>
+
+    <%- include('../components/footer', { config: config }) %>
+
+    <%- include('../components/math-support', { config: config }) %>
+
+</body>
+</html>
