@@ -11,54 +11,54 @@ marked.use(gfmHeadingId());
 
 async function buildSite(inputDir, outputDir, config) {
   const contentDir = path.resolve(process.cwd(), inputDir);
-  const distDir = path.resolve(process.cwd(), outputDir);
+  const finalSiteDir = path.resolve(process.cwd(), outputDir);
   const publicDir = path.resolve(process.cwd(), 'public');
   const templatesDir = path.resolve(__dirname, '../templates');
+  const toolDistDir = path.resolve(__dirname, '../../dist'); // The tool's own dist folder
 
-  logger.info(`Cleaning output directory: ${distDir}`);
-  await fse.remove(distDir);
+  logger.info(`Cleaning output directory: ${finalSiteDir}`);
+  await fse.remove(finalSiteDir);
 
+  logger.info(`Copying public assets from ${publicDir}`);
   if (fs.existsSync(publicDir)) {
-    logger.info(`Copying public assets from ${publicDir}`);
-    await fse.copy(publicDir, distDir);
+    await fse.copy(publicDir, finalSiteDir);
   }
 
-  const themePath = path.resolve(__dirname, `../themes/${config.theme}.scss`);
-  if (fs.existsSync(themePath)) {
-      logger.info(`Theme '${config.theme}' would be compiled here into dist/style.css`);
-      const dummyCss = `/* Styles for ${config.theme} theme */ body { font-family: sans-serif; }`;
-      await fse.outputFile(path.join(distDir, 'style.css'), dummyCss);
+  logger.info(`Copying compiled theme styles`);
+  const stylePath = path.join(toolDistDir, 'style.css');
+  if (fs.existsSync(stylePath)) {
+    await fse.copy(stylePath, path.join(finalSiteDir, 'style.css'));
+  } else {
+    logger.warn(`style.css not found in ${toolDistDir}. Run 'npm run build:themes' first.`);
   }
 
   const markdownFiles = findFilesByExtension(contentDir, '.md');
-  if (markdownFiles.length === 0) {
-    logger.warn(`No markdown files found in ${contentDir}.`);
-    return;
-  }
   logger.info(`Found ${markdownFiles.length} markdown files to process.`);
 
   for (const file of markdownFiles) {
     try {
       const fileContent = fs.readFileSync(file, 'utf8');
-
       const frontMatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n/;
       const match = fileContent.match(frontMatterRegex);
       const frontMatter = match ? require('js-yaml').load(match[1]) : {};
       const markdownBody = match ? fileContent.slice(match[0].length) : fileContent;
       const htmlContent = marked.parse(markdownBody);
-
+      
       const relativePath = path.relative(contentDir, file);
-      const outputPath = path.join(distDir, relativePath.replace(/\.md$/, '.html'));
+      const outputPath = path.join(finalSiteDir, relativePath.replace(/\.md$/, '.html'));
 
       const layoutPath = path.join(templatesDir, `layouts/${config.theme}.ejs`);
+      
+      // Data to be passed to all templates
       const templateData = {
         config,
         page: { frontMatter },
         content: htmlContent,
-        toc: []
+        toc: [] // Placeholder for your TOC logic
       };
 
-      const renderedHtml = await ejs.renderFile(layoutPath, templateData, { async: true });
+      // Render the full page using the main layout
+      const renderedHtml = await ejs.renderFile(layoutPath, templateData);
 
       await fse.ensureDir(path.dirname(outputPath));
       await fs.promises.writeFile(outputPath, renderedHtml);
