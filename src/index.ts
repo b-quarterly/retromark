@@ -9,6 +9,18 @@ import { loadConfig } from './core/config-loader';
 import logger from './utils/logger';
 import { version } from '../package.json';
 
+// Define the shape of the configuration object for TypeScript
+interface Config {
+  theme: string;
+  toc: {
+    position: string;
+  };
+  math: {
+    engine: string;
+  };
+  // Add other config properties here as needed
+}
+
 // --- Helper Functions ---
 
 const resolvePath = (inputPath: string): string => {
@@ -27,14 +39,14 @@ const createFile = (filePath: string, content: string): string => {
   return filePath;
 };
 
-
 // --- Command Implementations ---
 
 async function buildCommand(inputDir: string, outputDir: string, configFile: string, options: any = {}): Promise<void> {
   try {
     logger.start('Starting RetroMark build...');
     const startTime = Date.now();
-    const config = await loadConfig(configFile);
+    // Cast the config to our new interface
+    const config: Config = await loadConfig(configFile);
 
     if (options.theme) config.theme = options.theme;
     if (options.toc) config.toc.position = options.toc;
