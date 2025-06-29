@@ -4,38 +4,23 @@ import express from 'express';
 import liveReload from 'livereload';
 import path from 'path';
 import fs from 'fs';
-import { buildSite } from './core/builder'; 
+import { buildSite } from './core/builder';
 import { loadConfig } from './core/config-loader';
 import logger from './utils/logger';
 import { version } from '../package.json';
 
 // --- Helper Functions ---
 
-/**
- * Resolves a path relative to the current working directory.
- * @param {string} inputPath - The path to resolve.
- * @returns {string} The absolute path.
- */
 const resolvePath = (inputPath: string): string => {
   return path.isAbsolute(inputPath) ? inputPath : path.resolve(process.cwd(), inputPath);
 };
 
-/**
- * Ensures a directory exists, creating it recursively if it does not.
- * @param {string} dirPath - The directory path.
- */
 const ensureDirectory = (dirPath: string): void => {
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
   }
 };
 
-/**
- * Creates a file with the given content, ensuring the parent directory exists.
- * @param {string} filePath - The full path of the file to create.
- * @param {string} content - The content to write to the file.
- * @returns {string} The path of the created file.
- */
 const createFile = (filePath: string, content: string): string => {
   ensureDirectory(path.dirname(filePath));
   fs.writeFileSync(filePath, content);
@@ -45,13 +30,6 @@ const createFile = (filePath: string, content: string): string => {
 
 // --- Command Implementations ---
 
-/**
- * The 'build' command implementation.
- * @param {string} inputDir - Source directory for content.
- * @param {string} outputDir - Directory for built site.
- * @param {string} configFile - Path to the configuration file.
- * @param {object} options - Additional CLI options.
- */
 async function buildCommand(inputDir: string, outputDir: string, configFile: string, options: any = {}): Promise<void> {
   try {
     logger.start('Starting RetroMark build...');
@@ -69,18 +47,15 @@ async function buildCommand(inputDir: string, outputDir: string, configFile: str
     logger.info(`Output directory: ${resolvePath(outputDir)}`);
   } catch (error) {
     logger.error('Build failed:');
-    logger.error(error.message);
+    if (error instanceof Error) {
+      logger.error(error.message);
+    } else {
+      logger.error(error);
+    }
     process.exit(1);
   }
 }
 
-/**
- * The 'serve' command implementation.
- * @param {string} inputDir - Source directory for content.
- * @param {string} outputDir - Directory for built site.
- * @param {string} configFile - Path to the configuration file.
- * @param {number} port - Port to run the server on.
- */
 async function serveCommand(inputDir: string, outputDir: string, configFile: string, port: number): Promise<void> {
   try {
     logger.info('Performing initial build...');
@@ -110,7 +85,12 @@ async function serveCommand(inputDir: string, outputDir: string, configFile: str
         await buildSite(inputDir, outputDir, config);
         logger.success('Site rebuilt successfully.');
       } catch (error) {
-        logger.error('Rebuild failed:', error.message);
+        logger.error('Rebuild failed:');
+        if (error instanceof Error) {
+            logger.error(error.message);
+        } else {
+            logger.error(error);
+        }
       }
     });
 
@@ -123,15 +103,16 @@ async function serveCommand(inputDir: string, outputDir: string, configFile: str
     });
 
   } catch (error) {
-    logger.error('Failed to start server:', error.message);
+    logger.error('Failed to start server:');
+    if (error instanceof Error) {
+        logger.error(error.message);
+    } else {
+        logger.error(error);
+    }
     process.exit(1);
   }
 }
 
-/**
- * The 'init' command implementation.
- * @param {string} directory - The directory to initialize the project in.
- */
 function initCommand(directory: string = 'retromark-site'): void {
     try {
         const projectPath = resolvePath(directory);
@@ -165,16 +146,16 @@ Start by editing \`content/index.md\`.
         logger.plain(`  1. cd ${directory}`);
         logger.plain('  2. npx retromark serve');
     } catch (error) {
-        logger.error('Project initialization failed:', error.message);
+        logger.error('Project initialization failed:');
+        if (error instanceof Error) {
+            logger.error(error.message);
+        } else {
+            logger.error(error);
+        }
         process.exit(1);
     }
 }
 
-/**
- * The 'new' command implementation.
- * @param {string} title - The title of the new page.
- * @param {object} options - Additional CLI options.
- */
 function newPageCommand(title: string, options: any): void {
     try {
         const contentDir = resolvePath(options.dir || 'content');
@@ -205,7 +186,12 @@ Start writing your amazing content here.
         logger.success(`Created new page: ${filename}`);
         logger.info(`Path: ${filePath}`);
     } catch (error) {
-        logger.error('Page creation failed:', error.message);
+        logger.error('Page creation failed:');
+        if (error instanceof Error) {
+            logger.error(error.message);
+        } else {
+            logger.error(error);
+        }
         process.exit(1);
     }
 }
