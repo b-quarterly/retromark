@@ -1,0 +1,57 @@
+# Source files (use compiled dist instead)
+src/
+tsconfig.json
+
+# Development artifacts
+test/
+coverage/
+jest.config.js
+.eslintrc
+.prettierrc
+
+# Build intermediates
+*.log
+*.tmp
+*.map
+*.tsbuildinfo
+
+# Local development files
+.env
+.env.local
+.idea/
+.vscode/
+node_modules/
+dist-test/
+
+# Documentation (already hosted on GitHub)
+docs/
+examples/
+demo/
+
+# GitHub-specific files
+.github/
+.gitattributes
+.gitignore
+.gitmodules
+
+# CI configuration
+.actrc
+Dockerfile
+cleanup.sh
+
+# Design assets (not needed at runtime)
+design/
+*.sketch
+*.fig
+*.psd
+
+# Locks and caches
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.npmrc
+.yarnrc
+
+# OS metadata
+.DS_Store
+Thumbs.db
