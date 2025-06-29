@@ -33,21 +33,17 @@ jobs:
         run: npm install
 
       - name: Build the RetroMark tool
-        run: |
-          npm run build
-          # Debug: Verify dist structure
-          echo "Dist content:"
-          find dist -type f | sort
-          echo "Core builder exists:"
-          test -f dist/src/core/builder.js && echo "✅ Yes" || echo "❌ No"
+        run: npm run build
 
       - name: Build the project's own docs
+        # This is the corrected path to the compiled CLI entry point
         run: node dist/src/index.js build --input docs --output site
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
+        # This path must match the output directory from the previous step
         uses: actions/upload-pages-artifact@v3
         with:
           path: './site'
