@@ -9,8 +9,8 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc && node -e \"require('fs-extra').copySync('src/templates', 'dist/templates')\"",
-    "build:themes": "sass src/themes/:public/css/ --no-source-map",
+    "build": "tsc && cp -r src/templates dist/templates",
+    "build:themes": "sass src/themes/${THEME:-academic}.scss dist/style.css --no-source-map",
     "dev": "tsc-watch --onSuccess \"node dist/index.js serve\"",
     "test": "jest --coverage",
     "lint": "eslint . --ext .ts,.js",
