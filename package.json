@@ -10,7 +10,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc && npm run copy-files && node scripts/fix-imports",
-    "copy-files": "mkdir -p dist/static && cp -r public/* dist/static/ && cp -r templates dist/ && cp -r src/themes dist/src/themes",
+    "copy-files": "mkdir -p dist/static && [ -d 'public' ] && cp -r public/* dist/static/ || true && [ -d 'src/templates' ] && cp -r src/templates dist/src/templates || true && [ -d 'src/themes' ] && cp -r src/themes dist/src/themes || true",
     "build:themes": "sass src/themes/:public/css/ --no-source-map",
     "dev": "tsc-watch --onSuccess \"node dist/src/index.js serve\"",
     "test": "jest --coverage",
