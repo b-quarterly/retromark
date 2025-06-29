@@ -3,11 +3,10 @@
 <head>
     <%- include('../components/head', { config: config }) %>
     <title><%= page.frontMatter.title || config.title %></title>
-    <link rel="stylesheet" href="/style.css">
 </head>
 <body class="theme-academic layout-<%= config.layout.type %>">
 
-    <%- include('../components/header', { config: config, page: page }) %>
+    <%- include('../components/header', { config: config }) %>
 
     <div class="main-container">
         <% if (config.layout.type.includes('sidebar')) { %>
