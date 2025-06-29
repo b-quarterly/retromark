@@ -33,11 +33,14 @@ jobs:
         run: npm install
 
       - name: Build the RetroMark tool
-        run: npm run build
+        run: |
+          npm run build
+          # Verify dist structure (for debugging)
+          ls -R dist
 
       - name: Build the project's own docs
-        # Correct path to the compiled CLI entry point
-        run: node dist/src/index.js build --input docs --output dist
+        # Use relative path to ensure module resolution works
+        run: node --no-warnings dist/src/index.js build --input docs --output site
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -45,7 +48,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './site'
 
       - name: Deploy to GitHub Pages
         id: deployment
