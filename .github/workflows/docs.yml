@@ -1,4 +1,4 @@
-name: Build and Deploy Docs to GitHub Pages
+name: Build and Deploy Project Docs
 
 on:
   push:
@@ -35,13 +35,11 @@ jobs:
       - name: Build the RetroMark tool
         run: npm run build
 
-      - name: Build the documentation site
-        run: node dist/src/index.js build --input docs --output site
+      - name: Build the project's own docs
+        # This will now succeed because dist/index.js will exist at this path
+        run: node dist/index.js build --input docs --output site
 
-      - name: List contents of the site directory
-        run: ls -R site
-
-      - name: Setup GitHub Pages
+      - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
