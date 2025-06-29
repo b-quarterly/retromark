@@ -13,22 +13,28 @@ async function buildSite(inputDir, outputDir, config) {
     const finalSiteDir = path.resolve(process.cwd(), outputDir);
     const publicDir = path.resolve(process.cwd(), 'public');
     const templatesDir = path.resolve(__dirname, '../templates');
-    const toolDistDir = path.resolve(__dirname, '../../dist'); // The tool's own dist folder
+    // This is the project's root dist folder where style.css is created
+    const projectDistDir = path.resolve(process.cwd(), 'dist');
     logger.info(`Cleaning output directory: ${finalSiteDir}`);
     await fse.remove(finalSiteDir);
-    logger.info(`Copying public assets from ${publicDir}`);
     if (fs.existsSync(publicDir)) {
+        logger.info(`Copying public assets from ${publicDir}`);
         await fse.copy(publicDir, finalSiteDir);
     }
-    logger.info(`Copying compiled theme styles`);
-    const stylePath = path.join(toolDistDir, 'style.css');
+    // Correctly locate and copy style.css
+    const stylePath = path.join(projectDistDir, 'style.css');
     if (fs.existsSync(stylePath)) {
+        logger.info(`Copying style.css to the site directory.`);
         await fse.copy(stylePath, path.join(finalSiteDir, 'style.css'));
     }
     else {
-        logger.warn(`style.css not found in ${toolDistDir}. Run 'npm run build:themes' first.`);
+        logger.warn(`Warning: style.css not found in ${projectDistDir}. Site will be unstyled.`);
     }
     const markdownFiles = findFilesByExtension(contentDir, '.md');
+    if (markdownFiles.length === 0) {
+        logger.warn(`No markdown files found in ${contentDir}.`);
+        return;
+    }
     logger.info(`Found ${markdownFiles.length} markdown files to process.`);
     for (const file of markdownFiles) {
         try {
@@ -41,14 +47,12 @@ async function buildSite(inputDir, outputDir, config) {
             const relativePath = path.relative(contentDir, file);
             const outputPath = path.join(finalSiteDir, relativePath.replace(/\.md$/, '.html'));
             const layoutPath = path.join(templatesDir, `layouts/${config.theme}.ejs`);
-            // Data to be passed to all templates
             const templateData = {
                 config,
                 page: { frontMatter },
                 content: htmlContent,
-                toc: [] // Placeholder for your TOC logic
+                toc: []
             };
-            // Render the full page using the main layout
             const renderedHtml = await ejs.renderFile(layoutPath, templateData);
             await fse.ensureDir(path.dirname(outputPath));
             await fs.promises.writeFile(outputPath, renderedHtml);
