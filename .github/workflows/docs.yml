@@ -35,12 +35,14 @@ jobs:
       - name: Build the RetroMark tool
         run: |
           npm run build
-          # Verify dist structure (for debugging)
-          ls -R dist
+          # Debug: Verify dist structure
+          echo "Dist content:"
+          find dist -type f | sort
+          echo "Core builder exists:"
+          test -f dist/src/core/builder.js && echo "✅ Yes" || echo "❌ No"
 
       - name: Build the project's own docs
-        # Use relative path to ensure module resolution works
-        run: node --no-warnings dist/src/index.js build --input docs --output site
+        run: node dist/src/index.js build --input docs --output site
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
