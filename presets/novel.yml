@@ -1,0 +1,136 @@
+# Novel Theme Preset
+# =================
+# Book-inspired styling for novels, poetry collections, and literary works.
+# Features typewriter-inspired elements, vintage paper textures, 
+# and chapter-based navigation reminiscent of classic publications.
+
+meta:
+  name: "Novel"
+  description: "Classic book theme for fiction, poetry, and literary works"
+  author: "AItzaz Imtiaz"
+  version: "1.0"
+
+theme: "novel"
+
+layout:
+  type: "full-width"
+  header:
+    position: "static"
+    style: "minimal"
+    show_title: false
+    show_nav: false
+  footer:
+    enabled: true
+    content: |
+      The End • 
+      Printed on {date} • 
+      <span class="page-number">{page} of {total_pages}</span>
+
+typography:
+  font:
+    body: "'Crimson Text', 'Georgia', serif"
+    headings: "'IM Fell English', 'Times New Roman', serif"
+    code: "'Courier Prime', monospace"
+  sizes:
+    base: "20px"
+    h1: "2.2rem"          # Chapter titles
+    h2: "1.6rem"          # Section breaks
+    h3: "1.3rem"          # Subheadings
+  line_height: "1.8"       # Increased for readability
+  max_width: "680px"       # Optimal line length for reading
+  paragraph_indent: "1.5em" # First line indentation
+  paragraph_spacing: "0.5rem"
+
+colors:
+  primary: "#5d4037"       # Dark brown (ink color)
+  secondary: "#8d6e63"     # Lighter brown
+  background: "#fffaf0"    # Antique paper
+  text: "#3e2723"          # Dark brown text
+  links: "#5d4037"         # Same as primary
+  links_hover: "#bf360c"   # Burnt orange
+  header_bg: "transparent"
+  border: "#d7ccc8"        # Light sepia
+  code_bg: "#f5f1e6"       # Light parchment
+  blockquote_border: "#5d4037"
+  dropcap_color: "#5d4037" # Initial letter styling
+
+toc:
+  enabled: true
+  position: "none"         # Novels typically use page navigation
+  style: "minimal"
+  numbering: false
+  title: "Table of Contents"
+
+navigation:
+  style: "pagination"      # Previous/next chapter buttons
+  position: "bottom"       # Below content
+  labels:
+    previous: "← Previous Chapter"
+    next: "Next Chapter →"
+
+math:
+  engine: "none"           # Rare in novels, but can enable if needed
+
+features:
+  syntax_highlighting: false
+  header_anchors: false
+  print_mode: true
+  hyphenation: true
+  drop_caps: true          # Decorative first letters
+  scene_breaks: true       # Special styling for *** scene breaks
+  footnote_position: "page-bottom" # Footnotes at page bottom
+
+elements:
+  blockquote:
+    style: "italic"
+    padding: "0 2rem"
+    font_style: "italic"
+    border_left: false
+  hr:
+    style: "flourish"      # Decorative scene break
+  chapter:
+    start_page: "right"    # Chapters always start on right page
+    title_style: "centered"
+    number_style: "roman"   # I, II, III, etc.
+  page:
+    numbers: true           # Show page numbers
+    margin_notes: true      # Support marginal annotations
+
+custom:
+  css: "novel-overrides.css"
+  js: "novel-extras.js"
+  fonts:
+    - name: "Crimson Text"
+      url: "https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&display=swap"
+    - name: "IM Fell English"
+      url: "https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap"
+    - name: "Courier Prime"
+      url: "https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+  before_content: |
+    <div class="epigraph">
+      <p>"All the world's a stage, and all the men and women merely players."</p>
+      <p class="attribution">— William Shakespeare, <cite>As You Like It</cite></p>
+    </div>
+  after_content: |
+    <div class="colophon">
+      <p>Set in Crimson Text & IM Fell English<br>
+      Printed digitally via RetroMark<br>
+      {date}</p>
+    </div>
+
+processing:
+  smart_quotes: true
+  em_dash: true             # Convert -- to em-dash
+  en_dash: true             # Convert --- to en-dash
+  preserve_line_breaks: false
+  scene_break_symbol: "***" # Standard scene break marker
+
+# Novel-specific components
+novel:
+  frontmatter: true         # Dedicated front matter section
+  backmatter: true          # Appendices, glossaries
+  dedication: true
+  epigraph: true
+  parts: true               # Support for Part divisions
+  word_count: true          # Display at chapter ends
+  character_style: "classic" # Dialogue styling options
