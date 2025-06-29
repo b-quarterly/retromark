@@ -35,7 +35,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: build artifacts and update lockfile"
-          file_pattern: "dist/** package-lock.json"
+          file_pattern: "dist/** package-lock.json tsconfig.json"
           commit_user_name: "GitHub Actions Bot"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "GitHub Actions Bot <github-actions[bot]@users.noreply.github.com>"
