@@ -1,0 +1,111 @@
+# RetroMark Configuration File
+# ===========================
+# Documentation: https://github.com/b-quarterly/retromark
+
+# Site Metadata
+# -------------
+title: "My Retro Site"
+description: "A retro-styled knowledge base"
+baseUrl: "/"  # Base path for deployment
+author: "Aitzaz Imtiaz"
+language: "en-US"
+
+# Theme & Layout
+# --------------
+theme: "academic"  # Options: academic/novel/guidebook/terminal/vaporwave
+layout:
+  type: "sidebar-left"  # Options: full-width/sidebar-left/sidebar-right/two-column
+  header: 
+    position: "fixed"   # Options: fixed/static/sticky/none
+    style: "minimal"    # Options: minimal/classic/full
+  footer:
+    enabled: true
+    content: "Built with RetroMark • © {year}"
+
+# Table of Contents
+# -----------------
+toc:
+  enabled: true
+  position: "sticky-left"  # Options: top/bottom/sticky-left/sticky-right/none
+  depth: 3                  # Header depth (1-6)
+  style: "classic"          # Options: classic/modern/minimal
+
+# Navigation
+# ----------
+nav:
+  - title: "Home"
+    path: "/"
+  - title: "Chapters"
+    path: "/chapters/"
+    children:
+      - title: "Introduction"
+        path: "/chapters/01-intro"
+      - title: "Advanced Topics"
+        path: "/chapters/02-advanced"
+
+# Typography
+# ----------
+typography:
+  font:
+    body: "Garamond, serif"
+    headings: "Times New Roman, serif"
+    code: "Courier, monospace"
+  sizes:
+    base: 18px
+    h1: 2.5rem
+    h2: 2rem
+    h3: 1.75rem
+  line_height: 1.6
+  max_width: 800px  # Content width limit
+
+# Math Support
+# ------------
+math:
+  engine: "katex"  # Options: katex/mathjax/none
+  delimiters:
+    inline: ['$', '$']      # Inline math delimiters
+    display: ['$$', '$$']   # Display math delimiters
+
+# Styling Customization
+# ---------------------
+colors:
+  primary: "#8b0000"       # Dark red (academic)
+  secondary: "#556b2f"     # Olive green
+  background: "#f9f3e9"    # Parchment
+  text: "#333333"          # Dark gray
+  links: "#0066cc"         # Classic blue
+  code_bg: "#f5f5f5"
+
+# Advanced Features
+# -----------------
+features:
+  syntax_highlighting: true
+  header_anchors: true
+  print_mode: true         # Print-optimized layout
+  dark_mode: true          # Auto dark theme toggle
+  progress_bar: true       # Reading progress indicator
+
+# Custom Assets
+# -------------
+custom:
+  css: "custom.css"        # Path to custom CSS file
+  js: "custom.js"          # Path to custom JavaScript
+  fonts:
+    - name: "Retro Computer"
+      url: "https://fonts.example.com/retro-computer.woff2"
+  favicon: "favicon.ico"
+
+# Content Processing
+# ------------------
+processing:
+  smart_quotes: true
+  typographer: true
+  linkify: true
+  emoji: true
+
+# Build Options
+# -------------
+output: "dist"             # Output directory
+exclude:                   # Files/dirs to ignore
+  - "drafts/"
+  - "*.tmp.md"
