@@ -1,0 +1,163 @@
+@import '_variables';
+
+// ----------------------------------------
+// Terminal Theme
+// A retro CRT, command-line interface aesthetic.
+// ----------------------------------------
+
+// --- Color & Font Overrides ---
+$font-family-base: $font-family-code;
+$font-family-headings: $font-family-code;
+$background-color: #000000;
+$text-color: #00ff00; // Classic green phosphor
+$primary-color: #00ff00;
+$link-color: #00ffff; // Cyan for links
+$link-hover-color: #ffffff;
+
+// --- Keyframes for Animations ---
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: $primary-color; }
+}
+
+@keyframes text-flicker {
+  0% { text-shadow: 1px 0 1px rgba($primary-color, 0.3), -1px 0 1px rgba(cyan, 0.2); }
+  25% { text-shadow: 0 1px 1px rgba($primary-color, 0.3), 0 -1px 1px rgba(cyan, 0.2); }
+  50% { text-shadow: 1px 1px 1px rgba($primary-color, 0.3), -1px -1px 1px rgba(cyan, 0.2); }
+  75% { text-shadow: -1px 1px 1px rgba($primary-color, 0.3), 1px -1px 1px rgba(cyan, 0.2); }
+  100% { text-shadow: 1px 0 1px rgba($primary-color, 0.3), -1px 0 1px rgba(cyan, 0.2); }
+}
+
+@keyframes scanline {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+
+// --- Main Body and Window ---
+body.theme-terminal {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: $font-family-base;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: $spacing-base;
+}
+
+.terminal-window {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(0, 10, 0, 0.85);
+  border: 2px solid #333;
+  border-radius: $border-radius;
+  box-shadow: 0 0 30px rgba($primary-color, 0.3), inset 0 0 20px rgba(0,0,0,0.8);
+  overflow: hidden;
+  position: relative;
+
+  &::before { // CRT scanline effect
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 3px, 4px 100%;
+    z-index: 2;
+    animation: scanline 10s linear infinite;
+  }
+}
+
+// --- Terminal Header ---
+.terminal-header {
+  background-color: #222;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 0 $spacing-sm;
+  border-bottom: 1px solid #333;
+}
+
+.terminal-buttons {
+  display: flex;
+  .terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: $spacing-xs;
+    &.close { background-color: #ff5f56; }
+    &.minimize { background-color: #ffbd2e; }
+    &.maximize { background-color: #27c93f; }
+  }
+}
+
+.terminal-title {
+  color: #ccc;
+  font-size: $font-size-sm;
+  margin: 0 auto;
+}
+
+// --- Terminal Body & Content ---
+.terminal-body {
+  padding: $spacing-base;
+  height: 600px;
+  overflow-y: auto;
+  text-shadow: 0 0 5px rgba($primary-color, 0.5), 0 0 10px rgba($primary-color, 0.3);
+  animation: text-flicker 0.1s infinite;
+}
+
+.terminal-line {
+  margin-bottom: $spacing-sm;
+  line-height: 1.4;
+}
+
+.terminal-prompt {
+  color: $primary-color;
+  font-weight: $font-weight-bold;
+  margin-right: $spacing-sm;
+}
+
+.prose {
+  h1, h2, h3, h4, h5, h6 {
+    color: $primary-color;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    margin-top: $spacing-base;
+    margin-bottom: $spacing-sm;
+  }
+
+  a {
+    color: $link-color;
+    text-decoration: underline;
+    &:hover {
+      background-color: $link-color;
+      color: $background-color;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    li::before {
+      content: '* ';
+      color: $primary-color;
+    }
+  }
+}
+
+// Blinking cursor at the end
+.terminal-line:last-child .terminal-prompt::after {
+  content: '█';
+  animation: blink-caret 1s step-end infinite;
+}
+
+// Logout message styling
+.logout-message {
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px dashed rgba($primary-color, 0.3);
+  color: rgba($primary-color, 0.7);
+}
