@@ -5,13 +5,13 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "retromark": "dist/index.js"
+    "retromark": "dist/src/index.js"
   },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
     "build:themes": "sass src/themes/:public/css/ --no-source-map",
-    "dev": "tsc-watch --onSuccess \"node dist/index.js serve\"",
+    "dev": "tsc-watch --onSuccess \"node dist/src/index.js serve\"",
     "test": "jest --coverage",
     "lint": "eslint . --ext .ts,.js",
     "format": "prettier --write .",
