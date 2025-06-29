@@ -1,5 +1,7 @@
 <footer class="site-footer footer-style-<%= config.layout.footer.style || 'default' %>">
     <div class="footer-container">
-        <p><%= config.layout.footer.content.replace('{year}', new Date().getFullYear()) %></p>
+        <% if (config.layout.footer.enabled) { %>
+            <p><%- config.layout.footer.content.replace('{year}', new Date().getFullYear()) %></p>
+        <% } %>
     </div>
 </footer>
