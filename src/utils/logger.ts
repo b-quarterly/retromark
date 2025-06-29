@@ -1,4 +1,4 @@
-const util = require('util');
+import util from 'util';
 
 const colors = {
   reset: '\x1b[0m',
@@ -8,7 +8,6 @@ const colors = {
   blink: '\x1b[5m',
   reverse: '\x1b[7m',
   hidden: '\x1b[8m',
-
   fg: {
     black: '\x1b[30m',
     red: '\x1b[31m',
@@ -31,45 +30,24 @@ const colors = {
   },
 };
 
-const log = (message, color = colors.fg.white, icon = '') => {
+const log = (message: any, color: string = colors.fg.white, icon: string = ''): void => {
   const formattedMessage = typeof message === 'string' ? message : util.inspect(message, { colors: true, depth: null });
   console.log(`${color}${icon ? icon + ' ' : ''}${formattedMessage}${colors.reset}`);
 };
 
 const logger = {
-  info: (message) => {
-    log(message, colors.fg.cyan, 'ℹ');
-  },
-
-  success: (message) => {
-    log(message, colors.fg.green, '✔');
-  },
-
-  warn: (message) => {
-    log(message, colors.fg.yellow, '⚠');
-  },
-
-  error: (message) => {
-    log(message, colors.fg.red, '✖');
-  },
-
-  debug: (message) => {
+  info: (message: any): void => log(message, colors.fg.cyan, 'ℹ'),
+  success: (message: any): void => log(message, colors.fg.green, '✔'),
+  warn: (message: any): void => log(message, colors.fg.yellow, '⚠'),
+  error: (message: any): void => log(message, colors.fg.red, '✖'),
+  debug: (message: any): void => {
     if (process.env.NODE_ENV === 'development') {
         log(message, colors.fg.magenta, '⚙');
     }
   },
-
-  start: (message) => {
-      log(message, colors.fg.blue, '🚀');
-  },
-
-  done: (message) => {
-      log(message, colors.fg.green, '🎉');
-  },
-
-  plain: (message) => {
-      console.log(message);
-  }
+  start: (message: any): void => log(message, colors.fg.blue, '🚀'),
+  done: (message: any): void => log(message, colors.fg.green, '🎉'),
+  plain: (message: any): void => console.log(message),
 };
 
-module.exports = logger;
+export default logger;
