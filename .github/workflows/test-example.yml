@@ -1,0 +1,61 @@
+name: Deploy Example to GitHub Pages
+
+on:
+  # Run only when pushing to the 'test-example' branch
+  push:
+    branches:
+      - test-example
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy Example
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Install root dependencies
+        # Installs the dependencies for the RetroMark tool itself
+        run: npm install
+
+      - name: Build the RetroMark tool
+        # Compiles the main tool so the CLI is available
+        run: npm run build
+
+      - name: Build the example project
+        # Navigate into the example directory and run the build command
+        run: |
+          cd examples/academic-site
+          node ../../bin/retromark.js build --input content --output dist
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        # Uploads the built site from the example's dist folder
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'examples/academic-site/dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
