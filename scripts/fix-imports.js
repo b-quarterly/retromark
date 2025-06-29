@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 function fixImports(dir) {
+  if (!fs.existsSync(dir)) return;
+  
   const files = fs.readdirSync(dir);
   
   files.forEach(file => {
@@ -13,11 +15,11 @@ function fixImports(dir) {
     } else if (filePath.endsWith('.js')) {
       let content = fs.readFileSync(filePath, 'utf8');
       
-      // Fix relative import paths
+      // Fix relative imports
       content = content.replace(
-        /require\("(\.\.?\/[^"]+)"\)/g, 
+        /require\(['"](\.\.?\/[^'"]+)['"]\)/g, 
         (match, importPath) => {
-          if (!importPath.endsWith('.js')) {
+          if (!importPath.endsWith('.js') && !importPath.endsWith('.json')) {
             return `require("${importPath}.js")`;
           }
           return match;
