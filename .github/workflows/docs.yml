@@ -36,8 +36,8 @@ jobs:
         run: npm run build
 
       - name: Build the project's own docs
-        # This now points to the correctly compiled entry point
-        run: node dist/index.js build --input docs --output dist
+        # Correct path to the compiled CLI entry point
+        run: node dist/src/index.js build --input docs --output dist
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
