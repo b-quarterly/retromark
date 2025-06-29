@@ -12,8 +12,7 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -34,15 +33,17 @@ jobs:
           cache: 'npm'
 
       - name: Install root dependencies
-        # Installs the dependencies for the RetroMark tool itself
         run: npm install
 
       - name: Build the RetroMark tool
-        # Compiles the main tool so the CLI is available
         run: npm run build
 
+      # --- NEW DEBUGGING STEP ---
+      - name: List files in the repository
+        run: ls -R
+
       - name: Build the example project
-        # Navigate into the example directory and run the build command
+        # This step will now work if the directory exists
         run: |
           cd examples/academic-site
           node ../../bin/retromark.js build --input content --output dist
@@ -51,7 +52,6 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
-        # Uploads the built site from the example's dist folder
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'examples/academic-site/dist'
