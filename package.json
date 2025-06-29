@@ -9,8 +9,8 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc && npm run build:themes",
-    "build:themes": "sass src/themes/academic.scss dist/style.css --no-source-map",
+    "build": "node_modules/.bin/tsc && npm run build:themes",
+    "build:themes": "sass src/themes/${THEME:-academic}.scss dist/style.css --no-source-map",
     "dev": "tsc-watch --onSuccess \"node dist/index.js serve\"",
     "test": "jest --coverage",
     "lint": "eslint . --ext .ts,.js",
