@@ -7,7 +7,6 @@ on:
       - master
 
 permissions:
-  # This is crucial to allow the action to write back to your repository
   contents: write
 
 jobs:
@@ -23,25 +22,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
-          # The 'cache' line is removed to solve the error
-          # cache: 'npm' 
 
       - name: Install dependencies & Generate Lockfile
-        # 'npm install' will create a package-lock.json if one is not present
         run: npm install
 
       - name: Build project
-        # This script creates the 'dist' directory from your package.json build command
         run: npm run build
         env:
           CI: true
 
       - name: Commit and push changes
-        # This action will commit any changes in the specified files
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: build artifacts and update lockfile"
-          # This pattern tells the action to commit the dist folder and the lockfile
           file_pattern: "dist/** package-lock.json"
           commit_user_name: "GitHub Actions Bot"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
