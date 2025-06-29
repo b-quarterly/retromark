@@ -8,8 +8,8 @@
     "retromark": "dist/index.js"
   },
   "scripts": {
-    "prebuild": "rimraf build dist",
-    "build": "tsc && ncc build build/index.js -o dist -m",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
     "build:themes": "sass src/themes/:public/css/ --no-source-map",
     "dev": "tsc-watch --onSuccess \"node dist/index.js serve\"",
     "test": "jest --coverage",
