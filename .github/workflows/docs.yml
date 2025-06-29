@@ -1,26 +1,23 @@
 name: Build and Deploy Docs to GitHub Pages
 
 on:
-  # Run this workflow automatically on every push to the main branch
   push:
     branches:
       - main
       - master
 
-# Sets the necessary permissions for the workflow to deploy to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Ensures that only one deployment runs at a time
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
   build-and-deploy:
-    name: Build and Deploy
+    name: Build & Deploy Docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -29,7 +26,6 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          # This version should match the engine requirement in your package.json
           node-version: 20.x
           cache: 'npm'
 
@@ -37,18 +33,18 @@ jobs:
         run: npm install
 
       - name: Build the RetroMark tool
-        # This runs the 'build' script from your package.json
         run: npm run build
 
       - name: Build the documentation site
-        # This runs your compiled tool on the 'docs' folder and outputs to a 'site' folder
-        run: node dist/index.js build --input docs --output site
+        run: node dist/src/index.js build --input docs --output site
+
+      - name: List contents of the site directory
+        run: ls -R site
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
-        # This uploads the generated 'site' folder as a GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './site'
