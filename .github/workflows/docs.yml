@@ -32,15 +32,28 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build the RetroMark tool
-        # This now runs the complete build script from package.json
-        run: npm run build
+      - name: Compile TypeScript and JavaScript
+        run: npx tsc
+      
+      - name: DEBUG - List files after tsc
+        run: ls -R
+
+      - name: Copy EJS Templates to dist
+        run: cp -r src/templates dist/templates
+      
+      - name: Compile SCSS Themes
+        run: npx sass src/themes/academic.scss dist/style.css --no-source-map
+
+      - name: DEBUG - List files after all build steps
+        run: ls -R
 
       - name: Build the documentation site
-        # This path is now correct because of the tsconfig.json change
         run: node dist/index.js build --input docs --output site
 
-      - name: Setup Pages
+      - name: DEBUG - List final site contents
+        run: ls -R site
+
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
