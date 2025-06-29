@@ -1,0 +1,129 @@
+# Academic Theme Preset
+# =====================
+# Classic academic styling inspired by LaTeX documents, research papers, 
+# and vintage textbooks. Features a formal typographic hierarchy with 
+# structured navigation and traditional color palette.
+
+meta:
+  name: "Academic"
+  description: "Formal theme for research papers, theses, and technical documentation"
+  author: "AItzaz Imtiaz"
+  version: "1.0"
+
+theme: "academic"
+
+layout:
+  type: "sidebar-left"
+  header:
+    position: "fixed"
+    style: "minimal"
+    show_title: true
+    show_logo: false
+  sidebar:
+    width: "280px"
+    background: "#f5f2e9"
+    border: "1px solid #dcd6c2"
+  footer:
+    enabled: true
+    content: |
+      Published on {date} • 
+      <a href="https://github.com/{repo}">View Source</a> • 
+      © {year} {author}
+
+typography:
+  font:
+    body: "'Lora', 'Times New Roman', serif"
+    headings: "'Playfair Display', 'Georgia', serif"
+    code: "'Source Code Pro', 'Courier New', monospace"
+  sizes:
+    base: "17px"
+    h1: "2.4rem"
+    h2: "1.8rem"
+    h3: "1.4rem"
+    h4: "1.1rem"
+  line_height: "1.65"
+  max_width: "720px"
+  paragraph_spacing: "1.5rem"
+
+colors:
+  primary: "#8b0000"       # Dark red (accent for headings/links)
+  secondary: "#556b2f"     # Olive green (secondary accents)
+  background: "#f9f3e9"    # Parchment paper
+  text: "#333333"          # Dark gray (body text)
+  links: "#0066cc"         # Classic blue
+  links_hover: "#8b0000"   # Dark red
+  header_bg: "#ffffff"     # White
+  sidebar_bg: "#f5f2e9"    # Light parchment
+  border: "#dcd6c2"        # Light sepia
+  code_bg: "#f8f5e9"       # Light parchment
+  blockquote_border: "#8b0000"
+
+toc:
+  enabled: true
+  position: "sticky-left"
+  depth: 4
+  style: "classic"
+  numbering: true          # Section numbering (1.1, 1.2, etc.)
+  indent_guides: true      # Show indentation guides for hierarchy
+
+math:
+  engine: "katex"
+  delimiters:
+    inline: ['\\(', '\\)']
+    display: ['\\[', '\\]']
+  copy_tex: true           # Enable copy TeX source on equation right-click
+
+features:
+  syntax_highlighting: true
+  header_anchors: true
+  print_mode: true
+  footnotes: true
+  bibliography: true
+  theorem_environments: true  # Support for theorem, lemma, proof boxes
+  hyphenation: true           # Enable CSS hyphenation
+
+elements:
+  blockquote:
+    style: "border-left"
+    padding: "1rem 1.5rem"
+    background: "#f8f5e9"
+    border_color: "#8b0000"
+  table:
+    style: "lines"        # Options: lines/minimal/borders
+    header_bg: "#e8e3d3"
+    stripe: "#f5f2e9"
+  code:
+    copy_button: true
+  figures:
+    caption_position: "below"
+    numbering: true
+
+custom:
+  css: "academic-overrides.css"
+  js: "academic-extras.js"
+  fonts:
+    - name: "Lora"
+      url: "https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+    - name: "Playfair Display"
+      url: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+    - name: "Source Code Pro"
+      url: "https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap"
+  before_content: |
+    <div class="watermark">
+      DRAFT • {date}
+    </div>
+
+processing:
+  smart_quotes: true
+  typographer: true
+  footnote_anchor: "†"    # Symbol for footnote references
+  citation_style: "chicago-author-date"
+
+# Academic-specific components
+academic:
+  titlepage: true         # Generate formal title page
+  abstract: true          # Support abstract section
+  acknowledgements: true
+  appendix: true
+  index: true             # Generate index page
+  citation_style: "apa"   # Options: apa/chicago/ieee/nature
