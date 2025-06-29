@@ -1,0 +1,244 @@
+@import '_variables';
+
+// ----------------------------------------
+// Guidebook Theme
+// Clean, modern, and user-friendly. Ideal for documentation and manuals.
+// ----------------------------------------
+
+// --- Color Palette Overrides ---
+$primary-color: #007bff;      // A friendly, accessible blue
+$secondary-color: #6c757d;    // Muted gray for secondary text
+$accent-color: #28a745;       // Green for success, tips
+$background-color: #ffffff;   // Clean white background
+$text-color: #212529;         // Dark, readable text
+$border-color: #dee2e6;       // Light gray for borders
+$subtle-color: #f8f9fa;       // Very light gray for backgrounds
+
+// --- Font Overrides ---
+$font-family-base: $font-family-sans;
+$font-family-headings: $font-family-sans;
+$font-family-code: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+
+// --- General Body & Layout ---
+body.theme-guidebook {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: $font-family-base;
+}
+
+.guidebook-container {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.guidebook-content {
+  flex-grow: 1;
+  padding: $spacing-xl;
+  min-width: 0; // Prevent flexbox overflow
+}
+
+// --- Header ---
+.site-header {
+  background: linear-gradient(135deg, $primary-color, darken($primary-color, 15%));
+  color: $text-inverse-color;
+  padding: $spacing-base $container-padding;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+  .site-title a {
+    color: $text-inverse-color;
+    font-size: $h2-font-size;
+    font-weight: $font-weight-bold;
+    text-decoration: none;
+  }
+  .main-nav a {
+    color: rgba(255,255,255,0.85);
+    margin-left: $spacing-base;
+    text-decoration: none;
+    transition: $transition-base;
+    &:hover {
+      color: $text-inverse-color;
+    }
+  }
+}
+
+// --- Sidebar / Guide Navigation ---
+.guidebook-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background-color: $subtle-color;
+  border-right: 1px solid $border-color;
+  padding: $spacing-lg;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+
+  h3 {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    margin-bottom: $spacing-base;
+  }
+}
+
+// --- Table of Contents ---
+.retro-toc {
+  ul {
+    list-style-type: none;
+    padding-left: $spacing-sm;
+  }
+  a {
+    color: $secondary-color;
+    text-decoration: none;
+    display: block;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius;
+    transition: $transition-base;
+
+    &:hover {
+      background-color: rgba($primary-color, 0.1);
+      color: $primary-color;
+    }
+  }
+
+  .toc-active-link { // A class you can add via JS
+    background-color: rgba($primary-color, 0.1);
+    color: $primary-color;
+    font-weight: $font-weight-bold;
+  }
+}
+
+
+// --- Content Area ---
+.guidebook-header {
+  border-bottom: 2px solid $primary-color;
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+
+  h1 {
+    font-size: $h1-font-size;
+    font-weight: $font-weight-bold;
+    color: $text-color;
+  }
+  .subtitle {
+    font-size: $font-size-lg;
+    color: $secondary-color;
+    margin-top: $spacing-sm;
+  }
+}
+
+.prose {
+  h2, h3, h4 {
+    font-weight: 600;
+    margin-top: $spacing-xl;
+    margin-bottom: $spacing-base;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: $spacing-sm;
+  }
+
+  code {
+    background-color: rgba($primary-color, 0.1);
+    color: $primary-color;
+    font-family: $font-family-code;
+    padding: .2em .4em;
+    border-radius: $border-radius;
+    font-size: 85%;
+  }
+
+  pre {
+    background-color: #2b303b; // A dark background for contrast
+    color: #c0c5ce;
+    font-family: $font-family-code;
+    padding: $code-padding;
+    border-radius: $border-radius;
+    overflow-x: auto;
+    border: 1px solid #3e4451;
+    code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      font-size: inherit;
+    }
+  }
+
+  blockquote {
+    background-color: $subtle-color;
+    border-left: 4px solid $info-color;
+    padding: $blockquote-padding;
+    margin: $spacing-lg 0;
+    color: $secondary-color;
+  }
+}
+
+// --- Callouts / Special Boxes ---
+.callout {
+  padding: $spacing-base $spacing-lg;
+  margin: $spacing-lg 0;
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-radius: $border-radius;
+  background-color: $subtle-color;
+
+  &.tip {
+    border-left-color: $success-color;
+  }
+  &.warning {
+    border-left-color: $warning-color;
+  }
+  &.danger {
+    border-left-color: $error-color;
+  }
+
+  .callout-title {
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-sm;
+    font-size: $font-size-lg;
+  }
+
+  &.tip .callout-title { color: $success-color; }
+  &.warning .callout-title { color: $warning-color; }
+  &.danger .callout-title { color: $error-color; }
+}
+
+
+// --- Chapter Navigation ---
+.chapter-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: $spacing-xxl;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $border-color;
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: $font-weight-bold;
+    padding: $spacing-sm $spacing-base;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    transition: $transition-base;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $text-inverse-color;
+      border-color: $primary-color;
+    }
+  }
+}
+
+// --- Responsive ---
+@media (max-width: $breakpoint-md) {
+  .guidebook-container {
+    flex-direction: column;
+  }
+  .guidebook-sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid $border-color;
+  }
+}
