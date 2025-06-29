@@ -5,11 +5,11 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "bin": {
-        "retromark": "dist/src/index.js"
+        "retromark": "dist/index.js"
     },
     "scripts": {
         "prebuild": "rimraf dist",
-        "build": "tsc && npm run build:themes && cp -r src/templates dist/templates",
+        "build": "tsc && cp -r src/templates dist/templates && npm run build:themes",
         "build:themes": "sass src/themes/${THEME:-academic}.scss dist/style.css --no-source-map",
         "dev": "tsc-watch --onSuccess \"node dist/index.js serve\"",
         "test": "jest --coverage",
