@@ -27,7 +27,7 @@ jobs:
       - name: ⚙️ Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: 20.x
           cache: 'npm'
 
       - name: 📦 Install dependencies
@@ -42,13 +42,14 @@ jobs:
           find dist -type f || echo "⚠️ Nothing found in dist"
           echo "::endgroup::"
 
-      - name: 🧱 Build the project's own docs
+      - name: 🧱 Build project docs
+        # Adjust this if your CLI entry is not in dist/src/index.js
         run: node dist/src/index.js build --input docs --output site
 
-      - name: 📤 Setup GitHub Pages
+      - name: ⚙️ Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: 📦 Upload docs artifact
+      - name: 📦 Upload site to Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: './site'
