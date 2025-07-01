@@ -12,7 +12,7 @@ language: "en-US"
 
 # Theme & Layout
 # --------------
-theme: "academic"  # Options: academic/novel/guidebook/terminal/vaporwave
+theme: "novel"  # Options: academic/novel/guidebook/terminal/vaporwave
 layout:
   type: "sidebar-left"  # Options: full-width/sidebar-left/sidebar-right/two-column
   header: 
