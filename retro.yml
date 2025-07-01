@@ -16,8 +16,8 @@ theme: "academic"  # Options: academic/novel/guidebook/terminal/vaporwave
 layout:
   type: "full-width"  # Options: full-width/sidebar-left/sidebar-right/two-column
   header: 
-    position: "sticky"   # Options: fixed/static/sticky/none
-    style: "minimal"    # Options: minimal/classic/full
+    position: "static"   # Options: fixed/static/sticky/none
+    style: "full"    # Options: minimal/classic/full
   footer:
     enabled: true
     content: "Built with RetroMark • © {year}"
@@ -28,7 +28,7 @@ toc:
   enabled: true
   position: "sticky-left"  # Options: top/bottom/sticky-left/sticky-right/none
   depth: 3                  # Header depth (1-6)
-  style: "classic"          # Options: classic/modern/minimal
+  style: "modern"          # Options: classic/modern/minimal
 
 # Navigation
 # ----------
