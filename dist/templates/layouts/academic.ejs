@@ -11,7 +11,7 @@
     <div class="main-container">
         <% if (config.toc.enabled && config.layout.type.includes('sidebar')) { %>
             <aside class="sidebar">
-                <%- include('../components/toc', { toc: toc }) %>
+                <%- toc %>
             </aside>
         <% } %>
 
