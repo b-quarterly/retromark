@@ -7,8 +7,9 @@ const { marked } = require('marked');
 const { gfmHeadingId } = require("marked-gfm-heading-id");
 const logger = require('../utils/logger');
 const { findFilesByExtension } = require('../utils/file-utils');
-// Import the parser
-const { parseMarkdown, generateTOC } = require('./parser');
+// Import both the parser and the TOC generator
+const { parseMarkdown } = require('./parser');
+const TocGenerator = require('./toc-generator');
 marked.use(gfmHeadingId());
 async function buildSite(inputDir, outputDir, config) {
     const contentDir = path.resolve(process.cwd(), inputDir);
@@ -39,17 +40,18 @@ async function buildSite(inputDir, outputDir, config) {
     for (const file of markdownFiles) {
         try {
             const fileContent = fs.readFileSync(file, 'utf8');
-            // Use the new parser to get content, frontMatter, and toc
-            const { content: htmlContent, frontMatter, toc } = parseMarkdown(fileContent);
+            // Use the parser to get the raw TOC data (an array of headers)
+            const { content: htmlContent, frontMatter, toc: rawToc } = parseMarkdown(fileContent);
             const relativePath = path.relative(contentDir, file);
             const outputPath = path.join(finalSiteDir, relativePath.replace(/\.md$/, '.html'));
             const layoutPath = path.join(templatesDir, `layouts/${config.theme}.ejs`);
+            // Generate the final TOC HTML using the TocGenerator
+            const tocHtml = TocGenerator.generate(rawToc, config.toc);
             const templateData = {
                 config,
                 page: { frontMatter },
                 content: htmlContent,
-                // Pass the generated TOC to the template
-                toc: generateTOC(toc, config.toc.depth)
+                toc: tocHtml // Pass the generated HTML to the template
             };
             const renderedHtml = await ejs.renderFile(layoutPath, templateData);
             await fse.ensureDir(path.dirname(outputPath));
