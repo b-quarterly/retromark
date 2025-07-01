@@ -1,151 +1,167 @@
-body.theme-novel {
-  background-color: rgb(255, 241.5, 214.5);
-  color: #3e2723;
-  font-family: "Crimson Text", "Georgia", serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 1.5rem 0;
-}
-
-.book-container {
-  width: 100%;
-  max-width: 800px;
-  background-color: #fffaf0;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgb(193.5263157895, 176.6210526316, 170.4736842105);
-  padding: 3rem;
-  position: relative;
-}
-
-.page-content {
-  position: relative;
+body.theme-academic {
+  background: #f9f3e9;
+  font-family: "Garamond", "Times New Roman", serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  hyphens: auto;
+  text-align: justify;
 }
 
 .prose {
-  text-align: justify;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 1rem;
 }
-.prose h1, .prose h2, .prose h3 {
-  font-family: "IM Fell English", "Times New Roman", serif;
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-family: "Playfair Display", "Georgia", serif;
+  font-weight: 700;
+  color: #8b0000;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+}
+.prose h1 {
+  font-size: 2.5rem;
   text-align: center;
-  font-weight: 400;
-  color: #3e2723;
+  border-bottom: 3px double #a9a290;
+  padding-bottom: 0.5rem;
+  margin-top: 3rem;
+}
+.prose h2 {
+  font-size: 2rem;
+  border-bottom: 1px solid #e8e3d3;
+  padding-bottom: 0.25rem;
+}
+.prose h3 {
+  font-size: 1.75rem;
+  font-style: italic;
 }
 .prose p {
-  margin-bottom: 0.5rem;
-  text-indent: 2em;
+  margin-bottom: 1rem;
+  text-indent: 1rem;
 }
-.prose p:first-of-type {
-  text-indent: 0;
-}
-.prose p:first-of-type::first-letter {
-  font-family: "IM Fell English", "Times New Roman", serif;
-  float: left;
-  font-size: 4.5rem;
-  line-height: 0.8;
-  padding-right: 0.5rem;
-  color: #5d4037;
-}
-.prose hr {
-  border: 0;
-  text-align: center;
-  margin: 2rem 0;
-}
-.prose hr::after {
-  content: "***";
-  font-family: "IM Fell English", "Times New Roman", serif;
-  font-size: 1.5rem;
-  letter-spacing: 0.5em;
-  color: #8d6e63;
-}
-
-.chapter-header {
-  margin-bottom: 3rem;
-}
-.chapter-header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.25rem;
-}
-.chapter-header .chapter-number {
-  font-family: "IM Fell English", "Times New Roman", serif;
-  font-size: 1.125rem;
-  color: #8d6e63;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.epigraph {
-  margin: 0 auto 3rem auto;
-  max-width: 75%;
-  text-align: center;
-}
-.epigraph blockquote {
-  border: none;
-  padding: 0;
-}
-.epigraph blockquote p {
-  text-indent: 0;
-  font-style: italic;
-}
-.epigraph blockquote footer {
-  font-style: normal;
-  color: #8d6e63;
-  margin-top: 1rem;
-}
-
-.colophon {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #d7ccc8;
-  text-align: center;
-  font-size: 0.875rem;
-  color: #8d6e63;
-  font-style: italic;
-}
-.colophon p {
-  text-indent: 0;
-}
-
-.pagination-nav {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #d7ccc8;
-  font-family: "IM Fell English", "Times New Roman", serif;
-  font-size: 1.125rem;
-}
-.pagination-nav a {
-  color: #8d6e63;
+.prose a {
+  color: #0066cc;
   text-decoration: none;
+  border-bottom: 1px solid transparent;
   transition: all 0.2s ease-in-out;
 }
-.pagination-nav a:hover {
-  color: #bf360c;
+.prose a:hover {
+  color: #8b0000;
+  border-bottom-color: currentColor;
+}
+.prose blockquote {
+  border-left: 4px solid #8b0000;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: #f5f2e9;
+  font-style: italic;
+}
+.prose pre, .prose code {
+  font-family: "Courier Prime", "Courier New", monospace;
+  background-color: #f8f5e9;
+  border: 1px solid #e8e3d3;
+}
+.prose pre {
+  padding: 1rem;
+  border-left: 3px solid #0066cc;
+}
+.prose table {
+  border: 2px solid #a9a290;
+  margin: 2rem 0;
+}
+.prose table th {
+  background-color: #e8e3d3;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+.prose table th, .prose table td {
+  border: 1px solid #dcd6c2;
+  padding: 0.75rem;
+}
+.prose .figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+.prose .figure .caption {
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+.prose .figure .caption::before {
+  content: "Fig. ";
+  font-weight: 700;
+}
+
+.site-header {
+  border-bottom: 1px solid #dcd6c2;
+  font-family: "Playfair Display", "Georgia", serif;
+}
+.site-header .site-title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.sidebar {
+  background-color: #f5f2e9;
+  border-right: 1px solid #dcd6c2;
+  font-size: 0.875rem;
+}
+.sidebar .toc-title {
+  font-family: "Playfair Display", "Georgia", serif;
+  border-bottom: 1px solid #dcd6c2;
+  padding-bottom: 0.5rem;
+}
+
+.theorem, .lemma, .proof {
+  border-left: 4px solid;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  background-color: rgba(245, 242, 233, 0.5);
+}
+.theorem .theorem-title, .theorem .lemma-title, .theorem .proof-title, .lemma .theorem-title, .lemma .lemma-title, .lemma .proof-title, .proof .theorem-title, .proof .lemma-title, .proof .proof-title {
+  font-weight: 700;
+  font-variant: small-caps;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.theorem {
+  border-left-color: #8b0000;
+}
+
+.lemma {
+  border-left-color: #556b2f;
+}
+
+.proof {
+  border-left-color: #0066cc;
+}
+
+.footnotes {
+  border-top: 1px solid #dcd6c2;
+  padding-top: 1.5rem;
+  font-size: 0.875rem;
+}
+.footnotes::before {
+  content: "References";
+  font-family: "Playfair Display", "Georgia", serif;
+  font-variant: small-caps;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 @media print {
-  body.theme-novel {
-    background-color: #fff;
-    padding: 0;
-  }
-  .book-container {
-    box-shadow: none;
-    border: none;
-    max-width: 100%;
-    padding: 1in;
-  }
-  .pagination-nav {
+  .site-header, .sidebar {
     display: none;
   }
-  .prose p {
-    text-indent: 1.5em;
+  .prose {
+    max-width: 100%;
+    padding: 0;
   }
-  .prose h1, .prose h2 {
-    page-break-before: always;
+  .prose a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
   }
 }
