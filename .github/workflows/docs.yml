@@ -32,20 +32,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Compile TypeScript and JavaScript
-        run: npx tsc
-      
-      - name: DEBUG - List files after tsc
-        run: ls -R
-
-      - name: Copy EJS Templates to dist
-        run: cp -r src/templates dist/templates
-      
-      - name: Compile SCSS Themes
-        run: npx sass src/themes/academic.scss dist/style.css --no-source-map
-
-      - name: DEBUG - List files after all build steps
-        run: ls -R
+      - name: Build project
+        run: npm run build
 
       - name: Build the documentation site
         run: node dist/index.js build --input docs --output site
