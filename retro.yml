@@ -14,9 +14,9 @@ language: "en-US"
 # --------------
 theme: "academic"  # Options: academic/novel/guidebook/terminal/vaporwave
 layout:
-  type: "sidebar-left"  # Options: full-width/sidebar-left/sidebar-right/two-column
+  type: "full-width"  # Options: full-width/sidebar-left/sidebar-right/two-column
   header: 
-    position: "fixed"   # Options: fixed/static/sticky/none
+    position: "sticky"   # Options: fixed/static/sticky/none
     style: "minimal"    # Options: minimal/classic/full
   footer:
     enabled: true
