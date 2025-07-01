@@ -8,6 +8,6 @@ RetroMark is a tool that transforms plain Markdown files into a complete, themed
 
 ## Where to Start?
 
-- If you're new here, head over to the **[Getting Started](./01-getting-started.md)** guide.
+- If you're new here, head over to the **[Getting Started](./01-getting-started)** guide.
 - To learn about all the settings, check out the **[Configuration](./02-configuration.md)** reference.
 - To see the different styles, browse the **[Themes Guide](./03-themes.md)**.
