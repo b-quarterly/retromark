@@ -7,13 +7,14 @@ const { marked } = require('marked');
 const { gfmHeadingId } = require("marked-gfm-heading-id");
 const logger = require('../utils/logger');
 const { findFilesByExtension } = require('../utils/file-utils');
+// Import the parser
+const { parseMarkdown, generateTOC } = require('./parser');
 marked.use(gfmHeadingId());
 async function buildSite(inputDir, outputDir, config) {
     const contentDir = path.resolve(process.cwd(), inputDir);
     const finalSiteDir = path.resolve(process.cwd(), outputDir);
     const publicDir = path.resolve(process.cwd(), 'public');
     const templatesDir = path.resolve(__dirname, '../templates');
-    // This is the project's root dist folder where style.css is created
     const projectDistDir = path.resolve(process.cwd(), 'dist');
     logger.info(`Cleaning output directory: ${finalSiteDir}`);
     await fse.remove(finalSiteDir);
@@ -21,7 +22,6 @@ async function buildSite(inputDir, outputDir, config) {
         logger.info(`Copying public assets from ${publicDir}`);
         await fse.copy(publicDir, finalSiteDir);
     }
-    // Correctly locate and copy style.css
     const stylePath = path.join(projectDistDir, 'style.css');
     if (fs.existsSync(stylePath)) {
         logger.info(`Copying style.css to the site directory.`);
@@ -39,11 +39,8 @@ async function buildSite(inputDir, outputDir, config) {
     for (const file of markdownFiles) {
         try {
             const fileContent = fs.readFileSync(file, 'utf8');
-            const frontMatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n/;
-            const match = fileContent.match(frontMatterRegex);
-            const frontMatter = match ? require('js-yaml').load(match[1]) : {};
-            const markdownBody = match ? fileContent.slice(match[0].length) : fileContent;
-            const htmlContent = marked.parse(markdownBody);
+            // Use the new parser to get content, frontMatter, and toc
+            const { content: htmlContent, frontMatter, toc } = parseMarkdown(fileContent);
             const relativePath = path.relative(contentDir, file);
             const outputPath = path.join(finalSiteDir, relativePath.replace(/\.md$/, '.html'));
             const layoutPath = path.join(templatesDir, `layouts/${config.theme}.ejs`);
@@ -51,7 +48,8 @@ async function buildSite(inputDir, outputDir, config) {
                 config,
                 page: { frontMatter },
                 content: htmlContent,
-                toc: []
+                // Pass the generated TOC to the template
+                toc: generateTOC(toc, config.toc.depth)
             };
             const renderedHtml = await ejs.renderFile(layoutPath, templateData);
             await fse.ensureDir(path.dirname(outputPath));
