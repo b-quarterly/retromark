@@ -7,7 +7,7 @@ try {
   // --- 1. Load the retro.yml configuration ---
   const configPath = path.resolve(process.cwd(), 'retro.yml');
   const config = yaml.load(fs.readFileSync(configPath, 'utf8'));
-  const theme = config.theme || 'academic'; // Default to academic if not set
+  const theme = config.theme || 'academic';
 
   console.log(`Building theme: ${theme}`);
 
@@ -26,7 +26,6 @@ try {
   execSync(command, { stdio: 'inherit' });
 
   console.log('Theme built successfully!');
-
 } catch (error) {
   console.error('Error building theme:', error.message);
   process.exit(1);
