@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="<%= config.language || 'en-US' %>">
 <head>
-    <%- include('../components/header') %>
+    <%- include('../components/head', { config: config }) %>
     <title><%= page.frontMatter.title || config.title %></title>
 </head>
 <body class="theme-novel layout-<%= config.layout.type %>">
@@ -29,7 +29,7 @@
 
                 <%- content %>
 
-                 <% if (page.frontMatter.colophon) { %>
+                <% if (page.frontMatter.colophon) { %>
                     <div class="colophon">
                         <p><%= page.frontMatter.colophon %></p>
                     </div>
