@@ -1,6 +1,6 @@
 {
   "name": "retromark",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Retro-themed static site generator with math support and customizable layouts",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
